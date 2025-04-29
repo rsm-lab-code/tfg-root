@@ -3,10 +3,10 @@ aws_regions = ["us-west-2", "us-east-1"]
 aws_region = "us-west-2"  # Primary region for IPAM creation
 
 # Root ou_id
-root_ou_id = "r-mcli"
+root_ou_id = "r-26ji"
 
-tfg_test_account1_id = "329178087009"
-delegated_account_id = "556240469069"
+tfg_test_account1_id = "568259353708"
+delegated_account_id = "980104576742"
 rsm_vpn              = "66.98.96.0/20"
 
 #number of subnets for inspection vpc
