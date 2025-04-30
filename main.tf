@@ -1,6 +1,6 @@
 terraform {
    backend "remote" {
-  organization = "TFG-IPAM"
+  organization = "rsm-lab-code"
     workspaces {
     name = "tfg-multi-repo"
    }
@@ -24,7 +24,7 @@ terraform {
 
 # Add the IPAM module
 module "ipam" {
-  source = "github.com/mwoldesenbet1/terraform-module-ipam.git?ref=main"
+  source = "github.com/rsm-lab-code/terraform-module-ipam.git?ref=main"
   aws_regions = var.aws_regions
   delegated_account_id = var.delegated_account_id
   share_with_account_id = var.tfg_test_account1_id
@@ -36,7 +36,7 @@ module "ipam" {
 
 # Add the OUs module
 module "ous" {
- source = "github.com/mwoldesenbet1/terraform-module-ous.git?ref=main" 
+ source = "github.com/rsm-lab-code/terraform-module-ous.git?ref=main" 
  root_ou_id    = var.root_ou_id
  # account_email = var.account_email
 }
@@ -45,7 +45,7 @@ module "ous" {
 
 # Add the VPC module
 module "vpc" {
-  source = "github.com/mwoldesenbet1/terraform-module-networking.git//vpc?ref=main"
+  source = "github.com/rsm-lab-code/terraform-module-networking.git//vpc?ref=main"
   aws_regions = var.aws_regions
   
   # Map IPAM pool IDs to use for VPC CIDRs
@@ -65,7 +65,7 @@ module "vpc" {
 #Add Inspectin vpc module
 
 module "inspection_vpc" {
-  source = "github.com/mwoldesenbet1/terraform-module-networking.git//inspection_vpc?ref=main"
+  source = "github.com/rsm-lab-code/terraform-module-networking.git//inspection_vpc?ref=main"
 
   # Use IPAM for the inspection VPC
   aws_region = var.aws_region
@@ -91,7 +91,7 @@ module "inspection_vpc" {
 
 #Add tgw module
 module "tgw" {
-  source = "github.com/mwoldesenbet1/terraform-module-networking.git//tgw?ref=main"
+  source = "github.com/rsm-lab-code/terraform-module-networking.git//tgw?ref=main"
   aws_regions = var.aws_regions
   delegated_account_id = var.delegated_account_id
   rsm_vpn = var.rsm_vpn
