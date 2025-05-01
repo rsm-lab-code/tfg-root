@@ -79,7 +79,8 @@ module "inspection_vpc" {
 
   #TGW ID
   transit_gateway_id = module.tgw.transit_gateway_id
-  
+  transit_gateway_route_table_id = module.tgw.transit_gateway_route_table_id
+
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
     aws.delegated_account_us-east-1 = aws.delegated_account_us-east-1
