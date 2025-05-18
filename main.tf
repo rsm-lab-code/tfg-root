@@ -64,8 +64,7 @@ module "tgw" {
   source = "github.com/rsm-lab-code/tfg-hub//tgw?ref=main"
   aws_regions = var.aws_regions
   amazon_side_asn = 64512
-  create_vpc_attachment = true
-  
+   
   #account_id
   delegated_account_id = var.delegated_account_id
   
