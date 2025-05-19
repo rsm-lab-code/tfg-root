@@ -100,11 +100,11 @@ module "network_firewall" {
   }
 }
 
-
+/*
 # Add Spoke VPC module
 module "vpc" {
   #source = "../spoke/vpc"
-  source = "github.com/rsm-lab-code/tfg-spoke?ref=main"
+  source = "github.com/rsm-lab-code/tfg-spoke//dev1_vpc?ref=main"
   # AWS region
   aws_regions = var.aws_regions
   
@@ -119,4 +119,4 @@ module "vpc" {
    
   }
 }
-
+*/
