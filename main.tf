@@ -147,7 +147,7 @@ module "dev_vpc2" {
 
   # Transit Gateway ID and route table
   transit_gateway_id = module.tgw.tgw_id
-  transit_gateway_route_table_id = module.tgw.main_rt_id
+  transit_gateway_route_table_id = module.tgw.dev_tgw_rt_id
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
