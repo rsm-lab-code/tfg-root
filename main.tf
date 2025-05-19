@@ -130,11 +130,11 @@ module "vpc" {
   }
 }
 
-/*
+
 module "dev_vpc2" {
   source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc2?ref=main"
-
-  # VPC name - this is our new VPC
+  #source = "./spoke/dev_vpc2"
+  # VPC name 
   vpc_name = "dev-vpc2"
 
   # Account IDs
@@ -155,4 +155,4 @@ module "dev_vpc2" {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
   }
 }
-*/
+

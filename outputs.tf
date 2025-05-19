@@ -109,3 +109,22 @@ output "firewall_endpoint_ids" {
   description = "IDs of the Network Firewall endpoints"
   value       = module.network_firewall.firewall_endpoint_ids
 }
+
+# Add outputs for dev_vpc2
+output "dev_vpc2_id" {
+  description = "ID of dev_vpc2"
+  value       = module.dev_vpc2.vpc_id
+}
+
+output "dev_vpc2_cidr" {
+  description = "CIDR block of dev_vpc2"
+  value       = module.dev_vpc2.vpc_cidr
+}
+
+output "dev_vpc2_subnet_ids" {
+  description = "Subnet IDs in dev_vpc2"
+  value       = {
+    public  = module.dev_vpc2.public_subnet_ids
+    private = module.dev_vpc2.private_subnet_ids
+  }
+}
