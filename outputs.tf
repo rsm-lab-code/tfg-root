@@ -128,3 +128,8 @@ output "dev_vpc2_subnet_ids" {
     private = module.dev_vpc2.private_subnet_ids
   }
 }
+
+output "available_ipam_pools" {
+  description = "Available IPAM pool IDs"
+  value       = module.ipam.subnet_pool_ids
+}
