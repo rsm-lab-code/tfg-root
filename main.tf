@@ -100,7 +100,7 @@ module "network_firewall" {
   }
 }
 
-/*
+
 # Add Spoke VPC module
 module "vpc" {
   #source = "../spoke/vpc"
@@ -115,8 +115,8 @@ module "vpc" {
   ipam_pool_ids = module.ipam.subnet_pool_ids
 
   providers = {
-     aws.tfg_test_account1_id = aws.delegated_account_us-west-2
-     aws.tfg_test_account2_id = aws.delegated_account_us-east-1
+  aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+   
   }
 }
-*/
+
