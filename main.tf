@@ -129,3 +129,29 @@ module "vpc" {
   }
 }
 
+/*
+module "dev_vpc2" {
+  source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc2?ref=main"
+
+  # VPC name - this is our new VPC
+  vpc_name = "dev-vpc2"
+
+  # Account IDs
+  delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
+  ipam_pool_ids = module.ipam.subnet_pool_ids
+
+  # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
+
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.main_rt_id
+
+  providers = {
+    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+  }
+}
+*/
