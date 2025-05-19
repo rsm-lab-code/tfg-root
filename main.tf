@@ -107,7 +107,7 @@ module "vpc" {
   source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc1?ref=main"
 
   #VPC name
-  # vpc_name = "dev_vpc1"
+   vpc_name = "dev_vpc1"
 
   # Account IDs
   delegated_account_id = var.delegated_account_id
