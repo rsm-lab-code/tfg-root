@@ -23,27 +23,28 @@ output "subnet_pool_ids" {
   value       = module.ipam.subnet_pool_ids
 }
 
-# VPC outputs are now handled by the inspection_vpc module
-# Uncomment these if you add the VPC module back
-#output "vpc_ids" {
-#  description = "IDs of the created VPCs"
-#  value       = module.vpc.vpc_ids
-#}
-#
-#output "vpc_cidrs" {
-#  description = "CIDR blocks of the created VPCs"
-#  value       = module.vpc.vpc_cidrs
-#}
-#
-#output "subnet_ids" {
-#  description = "IDs of the created subnets"
-#  value       = module.vpc.subnet_ids
-#}
-#
-#output "subnet_cidrs" {
-#  description = "CIDR blocks of the created subnets"
-#  value       = module.vpc.subnet_cidrs
-#}
+output "vpc_ids" {
+  description = "IDs of the created VPCs"
+  value       = module.vpc.vpc_id
+}
+
+output "vpc_cidrs" {
+  description = "CIDR blocks of the created VPCs"
+  value       = module.vpc.vpc_cidr
+}
+
+output "subnet_ids" {
+  description = "IDs of the created subnets"
+  value       = {
+    public  = module.vpc.public_subnet_ids
+    private = module.vpc.private_subnet_ids
+  }
+}
+
+output "route_table_ids" {
+  description = "IDs of the route tables"
+  value       = module.vpc.route_table_ids
+}
 
 # Transit Gateway outputs
 output "transit_gateway_id" {
@@ -57,8 +58,6 @@ output "tgw_vpc_attachments" {
     "us-west-2" = module.tgw.inspection_attachment_id
   }
 }
-
-# Keep your existing outputs
 
 # Transit Gateway route table outputs
 
