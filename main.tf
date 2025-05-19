@@ -102,9 +102,9 @@ module "network_firewall" {
 
 
 # Add Spoke VPC module
-module "vpc" {
+module "dev_vpc1" {
   #source = "../spoke/vpc"
-  source = "github.com/rsm-lab-code/tfg-spoke//dev1_vpc?ref=main"
+  source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc1?ref=main"
 
   #VPC name
   vpc_name = "dev_vpc1"
