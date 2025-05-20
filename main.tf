@@ -154,3 +154,53 @@ module "dev_vpc2" {
   }
 }
 
+
+
+
+module "nonprod_vpc1" {
+  source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc1?ref=main"
+  #source = "./spoke/nonprod_vpc1"
+
+  # Account IDs
+  delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
+  ipam_pool_ids = module.ipam.subnet_pool_ids
+
+  # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
+
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.nonprod_tgw_rt_id
+
+  providers = {
+    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+  }
+}
+
+
+module "nonprod_vpc2" {
+  source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc2?ref=main"
+  #source = "./spoke/nonprod_vpc2"
+
+  # Account IDs
+  delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
+  ipam_pool_ids = module.ipam.subnet_pool_ids
+
+  # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
+
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.nonprod_tgw_rt_id
+
+  providers = {
+    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+  }
+}
+

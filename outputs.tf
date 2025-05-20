@@ -130,6 +130,46 @@ output "dev_vpc2_subnet_ids" {
   }
 }
 
+
+# Add outputs for nonprod_vpc1
+output "nonprod_vpc1_id" {
+  description = "ID of nonprod_vpc1"
+  value       = module.nonprod_vpc1.vpc_id
+}
+
+output "nonprod_vpc1_cidr" {
+  description = "CIDR block of nonprod_vpc1"
+  value       = module.nonprod_vpc1.vpc_cidr
+}
+
+output "nonprod_vpc1_subnet_ids" {
+  description = "Subnet IDs in nonprod_vpc1"
+  value       = {
+    public  = module.nonprod_vpc1.public_subnet_ids
+    private = module.nonprod_vpc1.private_subnet_ids
+  }
+}
+
+
+# Add outputs for nonprod_vpc2
+output "nonprod_vpc2_id" {
+  description = "ID of nonprod_vpc2"
+  value       = module.nonprod_vpc2.vpc_id
+}
+
+output "nonprod_vpc2_cidr" {
+  description = "CIDR block of nonprod_vpc2"
+  value       = module.nonprod_vpc2.vpc_cidr
+}
+
+output "nonprod_vpc2_subnet_ids" {
+  description = "Subnet IDs in nonprod_vpc2"
+  value       = {
+    public  = module.nonprod_vpc2.public_subnet_ids
+    private = module.nonprod_vpc2.private_subnet_ids
+  }
+}
+
 output "available_ipam_pools" {
   description = "Available IPAM pool IDs"
   value       = module.ipam.subnet_pool_ids
