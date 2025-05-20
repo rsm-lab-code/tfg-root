@@ -56,7 +56,8 @@ module "inspection_vpc" {
   firewall_endpoint_ids = module.network_firewall.firewall_endpoint_ids
 
   # VPC CIDR BLOCKS
-  #dev_vpc1_cidr     = aws_vpc.vpc.cidr_block
+  #####dev_vpc1_cidr     = aws_vpc.vpc.cidr_block
+  dev_vpc1_cidr     = module.spoke.dev_vpc1_cidr
   #dev_vpc2_cidr     = module.spoke.vpc_cidr
   #nonprod_vpc1_cidr = module.spoke.vpc_cidr
   #nonprod_vpc2_cidr = module.spoke.vpc_cidr
