@@ -45,7 +45,9 @@ module "inspection_vpc" {
   
   # AWS region
   aws_regions = var.aws_regions
-  
+  #Transit gateway id
+  transit_gateway_id = module.tgw.tgw_id
+   
   # Account ID
   tfg_test_account1_id = var.tfg_test_account1_id
   delegated_account_id = var.delegated_account_id
