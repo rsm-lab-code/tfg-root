@@ -33,6 +33,11 @@ output "vpc_cidrs" {
   value       = module.vpc.vpc_cidr
 }
 
+output "dev_vpc1_cidr" {
+  description = "CIDR blocks of the created VPCs"
+  value       = module.vpc.vpc_cidr
+}
+
 output "subnet_ids" {
   description = "IDs of the created subnets"
   value       = {
