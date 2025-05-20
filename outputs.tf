@@ -67,7 +67,8 @@ output "transit_gateway_route_table_ids" {
     inspection = module.tgw.inspection_rt_id
     main       = module.tgw.main_rt_id
     workload   = module.tgw.workload_rt_id 
-   dev        = module.tgw.dev_tgw_rt_id
+    dev        = module.tgw.dev_tgw_rt_id
+    nonprod    = module.tgw.nonprod_tgw_rt_id
   }
 }
 
