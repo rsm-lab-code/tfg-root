@@ -78,13 +78,33 @@ module "tgw" {
    
   #account_id
   delegated_account_id = var.delegated_account_id
-  
+ 
   inspection_vpc_id = module.inspection_vpc.vpc_id
   inspection_subnet_ids = module.inspection_vpc.tgw_subnet_ids
   inspection_vpc_cidr = module.inspection_vpc.vpc_cidr
   tgw_route_table_ids = {
     a = "placeholder-a"
     b = "placeholder-b"
+  }
+   
+  #Pass Spoke VPC attachement info
+    spoke_vpc_attachments = {
+    dev_vpc1 = {
+      cidr_block    = module.vpc.vpc_cidr
+      attachment_id = module.vpc.tgw_attachment_id
+    }
+    dev_vpc2 = {
+      cidr_block    = module.dev_vpc2.vpc_cidr
+      attachment_id = module.dev_vpc2.tgw_attachment_id
+    }
+    nonprod_vpc1 = {
+      cidr_block    = module.nonprod_vpc1.vpc_cidr
+      attachment_id = module.nonprod_vpc1.tgw_attachment_id
+    }
+    nonprod_vpc2 = {
+      cidr_block    = module.nonprod_vpc2.vpc_cidr
+      attachment_id = module.nonprod_vpc2.tgw_attachment_id
+    }
   }
 
 
