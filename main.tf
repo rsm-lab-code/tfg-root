@@ -168,9 +168,6 @@ module "dev_vpc2" {
   }
 }
 
-
-
-
 module "nonprod_vpc1" {
   source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc1?ref=main"
   #source = "./spoke/nonprod_vpc1"
