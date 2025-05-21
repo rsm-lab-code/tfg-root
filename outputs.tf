@@ -137,6 +137,7 @@ output "dev_vpc2_subnet_ids" {
 }
 
 
+##### NEW CODE
 # Add outputs for nonprod_vpc1
 output "nonprod_vpc1_id" {
   description = "ID of nonprod_vpc1"
@@ -157,6 +158,7 @@ output "nonprod_vpc1_subnet_ids" {
 }
 
 
+##### NEW CODE
 # Add outputs for nonprod_vpc2
 output "nonprod_vpc2_id" {
   description = "ID of nonprod_vpc2"
