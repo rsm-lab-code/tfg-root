@@ -43,6 +43,14 @@ module "inspection_vpc" {
   vpc_cidr_netmask = 24
   subnet_prefix = 3
   
+  spoke_vpc_cidrs = {
+    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+    # Add any future VPCs here
+  }
+
   # AWS region
   aws_regions = var.aws_regions
   #Transit gateway id
