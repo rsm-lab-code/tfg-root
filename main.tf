@@ -85,7 +85,7 @@ module "tgw" {
   }
 
   # VPC CIDR BLOCKS ##### NEW CODE
-  dev_vpc1_cidr     = module.vpc.vpc_cidr
+  #dev_vpc1_cidr     = module.vpc.vpc_cidr
   #dev_vpc2_cidr     = module.dev_vpc2.vpc_cidr
   #nonprod_vpc1_cidr = module.nonprod_vpc1.vpc_cidr
   #nonprod_vpc2_cidr = module.nonprod_vpc2.vpc_cidr
