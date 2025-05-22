@@ -33,6 +33,16 @@ module "ipam" {
     aws.delegated_account_us-east-1 = aws.delegated_account_us-east-1
   }
 }
+#locals block to manage all spoke VPC CIDRs:
+locals {
+  all_vpc_cidrs = {
+    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
+}
+
 
 # Add Inspection VPC module
 module "inspection_vpc" {
@@ -154,7 +164,13 @@ module "vpc" {
   # Transit Gateway ID and route table
   transit_gateway_id = module.tgw.tgw_id
   transit_gateway_route_table_id = module.tgw.dev_tgw_rt_id
-
+  
+  #other spoke vpc routes
+    spoke_vpc_routes = {
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
 
   providers = {
   aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
@@ -180,6 +196,14 @@ module "dev_vpc2" {
   # Transit Gateway ID and route table
   transit_gateway_id = module.tgw.tgw_id
   transit_gateway_route_table_id = module.tgw.dev_tgw_rt_id
+  
+  #Other spoke vpc routes
+    spoke_vpc_routes = {
+    dev_vpc1     = module.vpc.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
+
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
@@ -203,6 +227,14 @@ module "nonprod_vpc1" {
   # Transit Gateway ID and route table
   transit_gateway_id = module.tgw.tgw_id
   transit_gateway_route_table_id = module.tgw.nonprod_tgw_rt_id
+   
+  #Other Spoke VPC routes
+
+    spoke_vpc_routes = {
+    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
@@ -228,6 +260,13 @@ module "nonprod_vpc2" {
   transit_gateway_id = module.tgw.tgw_id
   transit_gateway_route_table_id = module.tgw.nonprod_tgw_rt_id
 
+  #Other Spoke VPC routes
+    spoke_vpc_routes = {
+    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+  }
+  
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
   }
