@@ -36,7 +36,7 @@ module "ipam" {
 #locals block to manage all spoke VPC CIDRs:
 locals {
   all_vpc_cidrs = {
-    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
     dev_vpc2     = module.dev_vpc2.vpc_cidr
     nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
     nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
@@ -101,8 +101,8 @@ module "tgw" {
   #Pass Spoke VPC attachement info
     spoke_vpc_attachments = {
     dev_vpc1 = {
-      cidr_block    = module.vpc.vpc_cidr
-      attachment_id = module.vpc.tgw_attachment_id
+      cidr_block    = module.dev_vpc1.vpc_cidr
+      attachment_id = module.dev_vpc1.tgw_attachment_id
     }
     dev_vpc2 = {
       cidr_block    = module.dev_vpc2.vpc_cidr
@@ -200,7 +200,7 @@ module "dev_vpc2" {
   
   #Other spoke vpc routes
     spoke_vpc_routes = {
-    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
     nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
     nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
   }
@@ -232,7 +232,7 @@ module "nonprod_vpc1" {
   #Other Spoke VPC routes
 
     spoke_vpc_routes = {
-    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
     dev_vpc2     = module.dev_vpc2.vpc_cidr
     nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
   }
@@ -263,7 +263,7 @@ module "nonprod_vpc2" {
 
   #Other Spoke VPC routes
     spoke_vpc_routes = {
-    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
     dev_vpc2     = module.dev_vpc2.vpc_cidr
     nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
   }

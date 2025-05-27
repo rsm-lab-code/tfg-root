@@ -25,26 +25,25 @@ output "subnet_pool_ids" {
 
 output "vpc_ids" {
   description = "IDs of the created VPCs"
-  value       = module.vpc.vpc_id
+  value       = module.dev_vpc1.vpc_id
 }
 
 output "vpc_cidrs" {
   description = "CIDR blocks of the created VPCs"
-  value       = module.vpc.vpc_cidr
+  value       = module.dev_vpc1.vpc_cidr
 }
-
 
 output "subnet_ids" {
   description = "IDs of the created subnets"
   value       = {
-    public  = module.vpc.public_subnet_ids
-    private = module.vpc.private_subnet_ids
+    public  = module.dev_vpc1.public_subnet_ids
+    private = module.dev_vpc1.private_subnet_ids
   }
 }
 
 output "route_table_ids" {
   description = "IDs of the route tables"
-  value       = module.vpc.route_table_ids
+  value       = module.dev_vpc1.route_table_ids
 }
 
 # Transit Gateway outputs
