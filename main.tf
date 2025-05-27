@@ -54,7 +54,7 @@ module "inspection_vpc" {
   subnet_prefix = 3
   
   spoke_vpc_cidrs = {
-    dev_vpc1     = module.vpc.vpc_cidr
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
     dev_vpc2     = module.dev_vpc2.vpc_cidr
     nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
     nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
@@ -145,7 +145,7 @@ module "network_firewall" {
 
 
 # Add Spoke VPC module
-module "vpc" {
+module "dev_vpc1" {
   #source = "../spoke/vpc"
   source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc1?ref=main"
 
