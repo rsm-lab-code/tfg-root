@@ -131,3 +131,9 @@ output "dev_vpc2_subnet_ids" {
   }
 }
 
+
+# AWS Config test outputs
+output "config_test_bucket" {
+  description = "Config test bucket name"
+  value       = module.aws_config_test.config_bucket_name
+}
