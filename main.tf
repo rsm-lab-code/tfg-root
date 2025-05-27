@@ -92,10 +92,15 @@ module "tgw" {
   inspection_vpc_id = module.inspection_vpc.vpc_id
   inspection_subnet_ids = module.inspection_vpc.tgw_subnet_ids
   inspection_vpc_cidr = module.inspection_vpc.vpc_cidr
+  #tgw_route_table_ids = {
+  # a = "placeholder-a"
+  # b = "placeholder-b"
+  #}
+
   tgw_route_table_ids = {
-    a = "placeholder-a"
-    b = "placeholder-b"
-  }
+  a = module.inspection_vpc.tgw_route_tables.a
+  b = module.inspection_vpc.tgw_route_tables.b
+}
    
   #Pass Spoke VPC attachement info
     spoke_vpc_attachments = {
