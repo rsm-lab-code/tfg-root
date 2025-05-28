@@ -9,7 +9,10 @@ variable "aws_region" {}
 # set in tfvars
 variable "root_ou_id" {}
 
-
+variable "organization_id" {
+  description = "AWS Organization ID for Config organization setup"
+  type        = string
+}
 
 variable "tfg_test_account1_id" {
  description = "AWS Account ID for tfg-test-account1"
