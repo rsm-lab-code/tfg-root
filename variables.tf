@@ -21,6 +21,11 @@ variable "delegated_account_id" {
   type        = string
 }
 
+variable "management_account_id" {
+  description = "AWS Account ID for management account where Config will be created"
+  type        = string
+}
+
 variable "rsm_vpn" {
   description = "IP address allowed for SSH access (CIDR notation)"
   type        = string
