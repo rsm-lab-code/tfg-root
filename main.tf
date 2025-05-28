@@ -275,14 +275,14 @@ module "nonprod_vpc2" {
 
 
 #AWS Config test module
-module "aws_config_test" {
-  source = "github.com/rsm-lab-code/config?ref=main"
-  delegated_account_id = var.delegated_account_id
-  management_account_id = var.management_account_id
+#module "aws_config_test" {
+# source = "github.com/rsm-lab-code/config?ref=main"
+# delegated_account_id = var.delegated_account_id
+# management_account_id = var.management_account_id
 
 
-  providers = {
-    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
-    aws.management_account_us-west-2 = aws.management_account_us-west-2
-  }
-}
+# providers = {
+#   aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+#   aws.management_account_us-west-2 = aws.management_account_us-west-2
+# }
+#}
