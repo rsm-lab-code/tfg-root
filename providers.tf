@@ -24,9 +24,9 @@ provider "aws" {
 provider "aws" {
   alias  = "management_account_us-west-2"
   region = var.aws_regions[0]  # us-west-2
-   assume_role {
-    role_arn = "arn:aws:iam::${var.management_account_id}:role/OrganizationAccountAccessRole"
-   }
+  #   assume_role {
+  # role_arn = "arn:aws:iam::${var.management_account_id}:role/OrganizationAccountAccessRole"
+  # }
 }
 
 # Providers for tfg-test account
