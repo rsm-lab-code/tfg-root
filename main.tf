@@ -1,4 +1,4 @@
-terraform {
+#terraform {
   #backend "remote" {
   # organization = "rsm-lab-code"
   # workspaces {
