@@ -5,21 +5,21 @@ terraform {
   #   name = "tfg-multi-repo"
   # }
   #}
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.49.0"
-    }
-    time = {
-      source  = "hashicorp/time"
-      version = "~> 0.9.0"
-    }
-    null = {
-      source  = "hashicorp/null"
-      version = "~> 3.0"
-    }
-  }
-}
+  #required_providers {
+  # aws = {
+  #   source  = "hashicorp/aws"
+  #   version = "~> 5.49.0"
+  # }
+  # time = {
+  #   source  = "hashicorp/time"
+  #   version = "~> 0.9.0"
+  # }
+  # null = {
+  #   source  = "hashicorp/null"
+  #   version = "~> 3.0"
+  # }
+  #}
+  #}
 
 # Add the IPAM module
 module "ipam" {
