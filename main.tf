@@ -127,9 +127,7 @@ module "spoke_vpcs" {
   transit_gateway_id = module.tgw.tgw_id
   
   # Route table assignment based on environment
-  transit_gateway_route_table_id = each.value.environment == "production" ? 
-    module.tgw.main_rt_id : module.tgw.nonprod_tgw_rt_id
-  
+  transit_gateway_route_table_id = each.value.environment == "production" ? module.tgw.main_rt_id : module.tgw.nonprod_tgw_rt_id  
   # Dynamic spoke VPC routes (excludes self)
   spoke_vpc_routes = {
     for k, v in module.spoke_vpcs : k => v.vpc_cidr
