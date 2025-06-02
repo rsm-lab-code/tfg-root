@@ -210,7 +210,8 @@ module "spoke_vpcs" {
   depends_on = [module.ipam, module.tgw]
 }
 
-# Phase 2: CREATE INTER-VPC ROUTES SEPARATELY - ADD THIS RIGHT HERE!
+# Phase 2: CREATE INTER-VPC ROUTES SEPARATELY
+
 resource "aws_route" "inter_vpc_routes" {
   for_each = {
     for pair in flatten([
