@@ -1,3 +1,4 @@
+#IPAM outputs
 output "ipam_id" {
   description = "ID of the created IPAM"
   value       = module.ipam.ipam_id
@@ -23,27 +24,73 @@ output "subnet_pool_ids" {
   value       = module.ipam.subnet_pool_ids
 }
 
+# Output all VPC information dynamically
+output "spoke_vpcs" {
+  description = "Information about all spoke VPCs"
+  value = {
+    for name, vpc in module.spoke_vpcs : name => {
+      vpc_id           = vpc.vpc_id
+      vpc_cidr         = vpc.vpc_cidr
+      public_subnets   = vpc.public_subnet_ids
+      private_subnets  = vpc.private_subnet_ids
+      tgw_attachment   = vpc.tgw_attachment_id
+      environment     = local.vpc_configurations[name].environment
+      internet_gateway = vpc.internet_gateway_id
+      route_tables    = vpc.route_table_ids
+    }
+  }
+}
+
+# Output VPCs by environment
+output "vpcs_by_environment" {
+  description = "VPCs grouped by environment"
+  value = {
+    for env in distinct([for vpc in local.vpc_configurations : vpc.environment]) :
+    env => {
+      for name, vpc in module.spoke_vpcs : name => {
+        vpc_id   = vpc.vpc_id
+        vpc_cidr = vpc.vpc_cidr
+      }
+      if local.vpc_configurations[name].environment == env
+    }
+  }
+}
+
+# Quick summary
+output "vpc_summary" {
+  description = "Summary of all VPCs"
+  value = {
+    total_vpcs = length(module.spoke_vpcs)
+    environments = {
+      for env in distinct([for vpc in local.vpc_configurations : vpc.environment]) :
+      env => length([for vpc in local.vpc_configurations : vpc if vpc.environment == env])
+    }
+    vpc_names = keys(module.spoke_vpcs)
+  }
+}
+
+# Backward compatibility outputs
 output "vpc_ids" {
-  description = "IDs of the created VPCs"
-  value       = module.dev_vpc1.vpc_id
+  description = "IDs of the created VPCs (backward compatibility)"
+  value       = module.spoke_vpcs["dev_vpc1"].vpc_id
 }
 
 output "vpc_cidrs" {
-  description = "CIDR blocks of the created VPCs"
-  value       = module.dev_vpc1.vpc_cidr
+  description = "CIDR blocks of the created VPCs (backward compatibility)"
+  value       = module.spoke_vpcs["dev_vpc1"].vpc_cidr
 }
 
 output "subnet_ids" {
-  description = "IDs of the created subnets"
+  description = "IDs of the created subnets (backward compatibility)"
   value       = {
-    public  = module.dev_vpc1.public_subnet_ids
-    private = module.dev_vpc1.private_subnet_ids
+    public  = module.spoke_vpcs["dev_vpc1"].public_subnet_ids
+    private = module.spoke_vpcs["dev_vpc1"].private_subnet_ids
   }
 }
 
 output "route_table_ids" {
-  description = "IDs of the route tables"
-  value       = module.dev_vpc1.route_table_ids
+  description = "IDs of the route tables (backward compatibility)"
+  value       = module.spoke_vpcs["dev_vpc1"].route_table_ids
 }
 
 # Transit Gateway outputs
@@ -60,13 +107,11 @@ output "tgw_vpc_attachments" {
 }
 
 # Transit Gateway route table outputs
-
 output "transit_gateway_route_table_ids" {
   description = "IDs of the Transit Gateway route tables"
   value       = {
     inspection = module.tgw.inspection_rt_id
     main       = module.tgw.main_rt_id
-    #workload   = module.tgw.workload_rt_id 
     dev        = module.tgw.dev_tgw_rt_id
     nonprod    = module.tgw.nonprod_tgw_rt_id
   }
@@ -112,28 +157,27 @@ output "firewall_endpoint_ids" {
   value       = module.network_firewall.firewall_endpoint_ids
 }
 
-# Add outputs for dev_vpc2
+# Add outputs for dev_vpc2 - FIXED to use new module structure
 output "dev_vpc2_id" {
   description = "ID of dev_vpc2"
-  value       = module.dev_vpc2.vpc_id
+  value       = module.spoke_vpcs["dev_vpc2"].vpc_id
 }
 
 output "dev_vpc2_cidr" {
   description = "CIDR block of dev_vpc2"
-  value       = module.dev_vpc2.vpc_cidr
+  value       = module.spoke_vpcs["dev_vpc2"].vpc_cidr
 }
 
 output "dev_vpc2_subnet_ids" {
   description = "Subnet IDs in dev_vpc2"
   value       = {
-    public  = module.dev_vpc2.public_subnet_ids
-    private = module.dev_vpc2.private_subnet_ids
+    public  = module.spoke_vpcs["dev_vpc2"].public_subnet_ids
+    private = module.spoke_vpcs["dev_vpc2"].private_subnet_ids
   }
 }
 
-
 # AWS Config test outputs
 output "config_test_bucket" {
-description = "Config test bucket name"
-value       = module.aws_config_test.config_bucket_name
+  description = "Config test bucket name"
+  value       = module.aws_config_test.config_bucket_name
 }
