@@ -193,10 +193,10 @@ module "spoke_vpcs" {
   transit_gateway_route_table_id   = module.tgw.route_table_ids[each.value.tgw_route_table_type]
 
   # Routes to other VPCs (excluding self)
-  #spoke_vpc_routes = {
-  # for name, cidr in local.all_vpc_cidrs : name => cidr
-  # if name != each.key
-  # }
+  # spoke_vpc_routes = {
+  #for name, cidr in local.all_vpc_cidrs : name => cidr
+  #if name != each.key
+  #}
 
   # Common tags
   common_tags = {
@@ -208,6 +208,31 @@ module "spoke_vpcs" {
   }
 
   depends_on = [module.ipam, module.tgw]
+}
+
+# Phase 2: CREATE INTER-VPC ROUTES SEPARATELY - ADD THIS RIGHT HERE!
+resource "aws_route" "inter_vpc_routes" {
+  for_each = {
+    for pair in flatten([
+      for vpc_name, vpc_config in local.vpc_configurations : [
+        for other_vpc_name, other_vpc_config in local.vpc_configurations : {
+          key                   = "${vpc_name}_to_${other_vpc_name}"
+          source_vpc           = vpc_name
+          destination_vpc      = other_vpc_name
+          route_table_id       = module.spoke_vpcs[vpc_name].route_table_ids.public
+          destination_cidr     = module.spoke_vpcs[other_vpc_name].vpc_cidr
+        }
+        if vpc_name != other_vpc_name  # Don't create routes to self
+      ]
+    ]) : pair.key => pair
+  }
+
+  provider                = aws.delegated_account_us-west-2
+  route_table_id         = each.value.route_table_id
+  destination_cidr_block = each.value.destination_cidr
+  transit_gateway_id     = module.tgw.tgw_id
+
+  depends_on = [module.spoke_vpcs, module.tgw]
 }
 
 #AWS Config test module

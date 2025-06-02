@@ -1,0 +1,1074 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+  [33m~[0m update in-place[0m
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.dev_vpc1.aws_route.public_rt_to_spoke_vpcs["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0d8848efe9cb9f740875695930" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0d8848efe9cb9f740" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.dev_vpc1.aws_route.public_rt_to_spoke_vpcs["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0d8848efe9cb9f7403160248511" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0d8848efe9cb9f740" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.dev_vpc1.aws_route.public_rt_to_spoke_vpcs["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0d8848efe9cb9f7403430119446" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0d8848efe9cb9f740" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.dev_vpc2.aws_route.public_rt_to_spoke_vpcs["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-091deebb1340233952823775742" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-091deebb134023395" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.dev_vpc2.aws_route.public_rt_to_spoke_vpcs["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-091deebb1340233953160248511" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-091deebb134023395" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.dev_vpc2.aws_route.public_rt_to_spoke_vpcs["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-091deebb1340233953430119446" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-091deebb134023395" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_a_to_spoke_vpcs["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_a_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e7d7a1c9cbd7c47d2823775742" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e7d7a1c9cbd7c47d" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-02ed0d2db0619dc01" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_a_to_spoke_vpcs["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_a_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e7d7a1c9cbd7c47d875695930" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e7d7a1c9cbd7c47d" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-02ed0d2db0619dc01" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_a_to_spoke_vpcs["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_a_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e7d7a1c9cbd7c47d3160248511" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e7d7a1c9cbd7c47d" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-02ed0d2db0619dc01" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_a_to_spoke_vpcs["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_a_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e7d7a1c9cbd7c47d3430119446" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e7d7a1c9cbd7c47d" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-02ed0d2db0619dc01" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_b_to_spoke_vpcs["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_b_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0b204a1b753e4f85b2823775742" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0b204a1b753e4f85b" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-096393f28ebd922a4" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_b_to_spoke_vpcs["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_b_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0b204a1b753e4f85b875695930" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0b204a1b753e4f85b" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-096393f28ebd922a4" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_b_to_spoke_vpcs["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_b_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0b204a1b753e4f85b3160248511" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0b204a1b753e4f85b" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-096393f28ebd922a4" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.inspection_vpc.aws_route.inspection_public_rt_b_to_spoke_vpcs["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_route" "inspection_public_rt_b_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0b204a1b753e4f85b3430119446" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0b204a1b753e4f85b" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m vpc_endpoint_id             = "vpce-096393f28ebd922a4" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.nonprod_vpc1.aws_route.public_rt_to_spoke_vpcs["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e53557df9d4d94ec2823775742" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e53557df9d4d94ec" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.nonprod_vpc1.aws_route.public_rt_to_spoke_vpcs["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e53557df9d4d94ec875695930" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e53557df9d4d94ec" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.nonprod_vpc1.aws_route.public_rt_to_spoke_vpcs["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-0e53557df9d4d94ec3430119446" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-0e53557df9d4d94ec" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.nonprod_vpc2.aws_ec2_transit_gateway_route_table_association.nonprod_vpc2_tgw_rt_association[0m will be [1m[31mdestroyed[0m
+  # (because aws_ec2_transit_gateway_route_table_association.nonprod_vpc2_tgw_rt_association is not in configuration)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route_table_association" "nonprod_vpc2_tgw_rt_association" {
+      [31m-[0m[0m id                             = "tgw-rtb-08f2015e26767eb37_tgw-attach-0dc892cf0ef32a657" [90m-> null[0m[0m
+      [31m-[0m[0m replace_existing_association   = false [90m-> null[0m[0m
+      [31m-[0m[0m resource_id                    = "vpc-0ffe51b0a7b043d46" [90m-> null[0m[0m
+      [31m-[0m[0m resource_type                  = "vpc" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0dc892cf0ef32a657" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-08f2015e26767eb37" [90m-> null[0m[0m
+    }
+
+[1m  # module.nonprod_vpc2.aws_route.public_rt_to_spoke_vpcs["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-02aeb7414e0938d682823775742" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-02aeb7414e0938d68" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.nonprod_vpc2.aws_route.public_rt_to_spoke_vpcs["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-02aeb7414e0938d68875695930" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-02aeb7414e0938d68" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.nonprod_vpc2.aws_route.public_rt_to_spoke_vpcs["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because aws_route.public_rt_to_spoke_vpcs is not in configuration)
+[0m  [31m-[0m[0m resource "aws_route" "public_rt_to_spoke_vpcs" {
+      [31m-[0m[0m destination_cidr_block      = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                          = "r-rtb-02aeb7414e0938d683160248511" [90m-> null[0m[0m
+      [31m-[0m[0m origin                      = "CreateRoute" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id              = "rtb-02aeb7414e0938d68" [90m-> null[0m[0m
+      [31m-[0m[0m state                       = "active" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_id          = "tgw-04ff837d38c1bacc3" [90m-> null[0m[0m
+        [90m# (13 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_ec2_transit_gateway_vpc_attachment.tgw_attachment[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_ec2_transit_gateway_vpc_attachment" "tgw_attachment" {
+        id                                              = "tgw-attach-000251f234853c5e6"
+      [33m~[0m[0m tags                                            = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            "Name"        = "dev_vpc1-tgw-attachment-usw2"
+        }
+      [33m~[0m[0m tags_all                                        = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            [90m# (1 unchanged element hidden)[0m[0m
+        }
+        [90m# (10 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_internet_gateway.igw[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_internet_gateway" "igw" {
+        id       = "igw-0f327ad18d9651563"
+      [33m~[0m[0m tags     = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            "Name"        = "dev_vpc1-igw"
+        }
+      [33m~[0m[0m tags_all = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            [90m# (1 unchanged element hidden)[0m[0m
+        }
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_route_table.private_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "private_rt" {
+        id               = "rtb-032451ccc26135df2"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            "Name"        = "dev_vpc1-private-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            [90m# (1 unchanged element hidden)[0m[0m
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_route_table.public_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "public_rt" {
+        id               = "rtb-0d8848efe9cb9f740"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            "Name"        = "dev_vpc1-public-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            [90m# (1 unchanged element hidden)[0m[0m
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_subnet.private_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-05e9ed18715f6f228"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-private-subnet-usw2-a" [33m->[0m[0m "dev_vpc1-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-private-subnet-usw2-a" [33m->[0m[0m "dev_vpc1-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_subnet.private_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-02a2a61ee4f9a552e"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-private-subnet-usw2-b" [33m->[0m[0m "dev_vpc1-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-private-subnet-usw2-b" [33m->[0m[0m "dev_vpc1-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_subnet.public_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-0163eb75dc9c2f322"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-public-subnet-usw2-a" [33m->[0m[0m "dev_vpc1-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-public-subnet-usw2-a" [33m->[0m[0m "dev_vpc1-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_subnet.public_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-0982fbc1efc339829"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-public-subnet-usw2-b" [33m->[0m[0m "dev_vpc1-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev_vpc1-public-subnet-usw2-b" [33m->[0m[0m "dev_vpc1-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc1"].aws_vpc.vpc[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_vpc" "vpc" {
+        id                                   = "vpc-0f24102f90e83d032"
+      [33m~[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            "Name"        = "dev_vpc1"
+        }
+      [33m~[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+            [90m# (1 unchanged element hidden)[0m[0m
+        }
+        [90m# (18 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_ec2_transit_gateway_vpc_attachment.tgw_attachment[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_ec2_transit_gateway_vpc_attachment" "tgw_attachment" {
+        id                                              = "tgw-attach-0a5be61478a736c88"
+      [33m~[0m[0m tags                                            = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-tgw-attachment-usw2" [33m->[0m[0m "dev_vpc2-tgw-attachment-usw2"
+        }
+      [33m~[0m[0m tags_all                                        = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-tgw-attachment-usw2" [33m->[0m[0m "dev_vpc2-tgw-attachment-usw2"
+        }
+        [90m# (10 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_internet_gateway.igw[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_internet_gateway" "igw" {
+        id       = "igw-0c7507d652caa5fa6"
+      [33m~[0m[0m tags     = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-igw" [33m->[0m[0m "dev_vpc2-igw"
+        }
+      [33m~[0m[0m tags_all = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-igw" [33m->[0m[0m "dev_vpc2-igw"
+        }
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_route_table.private_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "private_rt" {
+        id               = "rtb-0a8d8142179d8555f"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-private-rt" [33m->[0m[0m "dev_vpc2-private-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-private-rt" [33m->[0m[0m "dev_vpc2-private-rt"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_route_table.public_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "public_rt" {
+        id               = "rtb-091deebb134023395"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-public-rt" [33m->[0m[0m "dev_vpc2-public-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-public-rt" [33m->[0m[0m "dev_vpc2-public-rt"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_subnet.private_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-0aef32ce63b3899c8"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-private-subnet-usw2-a" [33m->[0m[0m "dev_vpc2-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-private-subnet-usw2-a" [33m->[0m[0m "dev_vpc2-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_subnet.private_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-052f514fe9e8e8d25"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-private-subnet-usw2-b" [33m->[0m[0m "dev_vpc2-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-private-subnet-usw2-b" [33m->[0m[0m "dev_vpc2-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_subnet.public_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-095ced0999e63b890"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-public-subnet-usw2-a" [33m->[0m[0m "dev_vpc2-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-public-subnet-usw2-a" [33m->[0m[0m "dev_vpc2-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_subnet.public_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-067a49de278d0022c"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-public-subnet-usw2-b" [33m->[0m[0m "dev_vpc2-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2-public-subnet-usw2-b" [33m->[0m[0m "dev_vpc2-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["dev_vpc2"].aws_vpc.vpc[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_vpc" "vpc" {
+        id                                   = "vpc-024741c5ddde44954"
+      [33m~[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2" [33m->[0m[0m "dev_vpc2"
+        }
+      [33m~[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "dev"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "dev-vpc2" [33m->[0m[0m "dev_vpc2"
+        }
+        [90m# (18 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_ec2_transit_gateway_vpc_attachment.tgw_attachment[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_ec2_transit_gateway_vpc_attachment" "tgw_attachment" {
+        id                                              = "tgw-attach-0ba28dab7ce80ce83"
+      [33m~[0m[0m tags                                            = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-tgw-attachment-usw2" [33m->[0m[0m "nonprod_vpc1-tgw-attachment-usw2"
+        }
+      [33m~[0m[0m tags_all                                        = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-tgw-attachment-usw2" [33m->[0m[0m "nonprod_vpc1-tgw-attachment-usw2"
+        }
+        [90m# (10 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_internet_gateway.igw[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_internet_gateway" "igw" {
+        id       = "igw-09855a4da06131222"
+      [33m~[0m[0m tags     = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-igw" [33m->[0m[0m "nonprod_vpc1-igw"
+        }
+      [33m~[0m[0m tags_all = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-igw" [33m->[0m[0m "nonprod_vpc1-igw"
+        }
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_route_table.private_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "private_rt" {
+        id               = "rtb-0c5c1bd9f0d3ca536"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-private-rt" [33m->[0m[0m "nonprod_vpc1-private-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-private-rt" [33m->[0m[0m "nonprod_vpc1-private-rt"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_route_table.public_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "public_rt" {
+        id               = "rtb-0e53557df9d4d94ec"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-public-rt" [33m->[0m[0m "nonprod_vpc1-public-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-public-rt" [33m->[0m[0m "nonprod_vpc1-public-rt"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_subnet.private_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-03a272e8c13a5c571"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-private-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc1-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-private-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc1-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_subnet.private_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-0053ce368645aad45"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-private-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc1-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-private-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc1-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_subnet.public_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-05947efdfdf1f0010"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-public-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc1-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-public-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc1-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_subnet.public_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-06d84b69627a65944"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-public-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc1-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1-public-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc1-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc1"].aws_vpc.vpc[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_vpc" "vpc" {
+        id                                   = "vpc-07a7c18d74c342449"
+      [33m~[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1" [33m->[0m[0m "nonprod_vpc1"
+        }
+      [33m~[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc1" [33m->[0m[0m "nonprod_vpc1"
+        }
+        [90m# (18 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_ec2_transit_gateway_route_table_association.tgw_rt_association[0m will be created
+[0m  [32m+[0m[0m resource "aws_ec2_transit_gateway_route_table_association" "tgw_rt_association" {
+      [32m+[0m[0m id                             = (known after apply)
+      [32m+[0m[0m replace_existing_association   = false
+      [32m+[0m[0m resource_id                    = (known after apply)
+      [32m+[0m[0m resource_type                  = (known after apply)
+      [32m+[0m[0m transit_gateway_attachment_id  = "tgw-attach-0dc892cf0ef32a657"
+      [32m+[0m[0m transit_gateway_route_table_id = "tgw-rtb-08f2015e26767eb37"
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_ec2_transit_gateway_vpc_attachment.tgw_attachment[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_ec2_transit_gateway_vpc_attachment" "tgw_attachment" {
+        id                                              = "tgw-attach-0dc892cf0ef32a657"
+      [33m~[0m[0m tags                                            = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-tgw-attachment-usw2" [33m->[0m[0m "nonprod_vpc2-tgw-attachment-usw2"
+        }
+      [33m~[0m[0m tags_all                                        = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-tgw-attachment-usw2" [33m->[0m[0m "nonprod_vpc2-tgw-attachment-usw2"
+        }
+        [90m# (10 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_internet_gateway.igw[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_internet_gateway" "igw" {
+        id       = "igw-09e3dc4c528f9d3fb"
+      [33m~[0m[0m tags     = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-igw" [33m->[0m[0m "nonprod_vpc2-igw"
+        }
+      [33m~[0m[0m tags_all = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-igw" [33m->[0m[0m "nonprod_vpc2-igw"
+        }
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_route_table.private_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "private_rt" {
+        id               = "rtb-088df17db8d7a5bc6"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-private-rt" [33m->[0m[0m "nonprod_vpc2-private-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-private-rt" [33m->[0m[0m "nonprod_vpc2-private-rt"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_route_table.public_rt[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_route_table" "public_rt" {
+        id               = "rtb-02aeb7414e0938d68"
+      [33m~[0m[0m tags             = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-public-rt" [33m->[0m[0m "nonprod_vpc2-public-rt"
+        }
+      [33m~[0m[0m tags_all         = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-public-rt" [33m->[0m[0m "nonprod_vpc2-public-rt"
+        }
+        [90m# (5 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_subnet.private_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-0966d89341e8301d9"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-private-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc2-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-private-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc2-private-subnet-a"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_subnet.private_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "private_subnet" {
+        id                                             = "subnet-01ea221a7456236f4"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-private-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc2-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-private-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc2-private-subnet-b"
+          [32m+[0m[0m "Type"        = "private"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_subnet.public_subnet[0][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-024b204245ef09068"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-public-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc2-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-public-subnet-usw2-a" [33m->[0m[0m "nonprod_vpc2-public-subnet-a"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_subnet.public_subnet[1][0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_subnet" "public_subnet" {
+        id                                             = "subnet-07f831ba08196654f"
+      [33m~[0m[0m tags                                           = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-public-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc2-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+      [33m~[0m[0m tags_all                                       = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2-public-subnet-usw2-b" [33m->[0m[0m "nonprod_vpc2-public-subnet-b"
+          [32m+[0m[0m "Type"        = "public"
+        }
+        [90m# (19 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.spoke_vpcs["nonprod_vpc2"].aws_vpc.vpc[0m will be updated in-place
+[0m  [33m~[0m[0m resource "aws_vpc" "vpc" {
+        id                                   = "vpc-0ffe51b0a7b043d46"
+      [33m~[0m[0m tags                                 = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2" [33m->[0m[0m "nonprod_vpc2"
+        }
+      [33m~[0m[0m tags_all                             = {
+          [32m+[0m[0m "Environment" = "nonprod"
+          [32m+[0m[0m "ManagedBy"   = "terraform"
+          [33m~[0m[0m "Name"        = "nonprod-vpc2" [33m->[0m[0m "nonprod_vpc2"
+        }
+        [90m# (18 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.inspection_rt_spoke_routes["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "inspection_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0642e381a524f2625_10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-000251f234853c5e6" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0642e381a524f2625" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.inspection_rt_spoke_routes["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "inspection_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0642e381a524f2625_10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0a5be61478a736c88" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0642e381a524f2625" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.inspection_rt_spoke_routes["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "inspection_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0642e381a524f2625_10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0ba28dab7ce80ce83" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0642e381a524f2625" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.inspection_rt_spoke_routes["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "inspection_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0642e381a524f2625_10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0dc892cf0ef32a657" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0642e381a524f2625" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.main_rt_spoke_routes["dev_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "main_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0c4129787b191ff75_10.0.128.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-000251f234853c5e6" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0c4129787b191ff75" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.main_rt_spoke_routes["dev_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["dev_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "main_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0c4129787b191ff75_10.0.136.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0a5be61478a736c88" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0c4129787b191ff75" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.main_rt_spoke_routes["nonprod_vpc1"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc1"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "main_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0c4129787b191ff75_10.0.144.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0ba28dab7ce80ce83" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0c4129787b191ff75" [90m-> null[0m[0m
+    }
+
+[1m  # module.tgw.aws_ec2_transit_gateway_route.main_rt_spoke_routes["nonprod_vpc2"][0m will be [1m[31mdestroyed[0m
+  # (because key ["nonprod_vpc2"] is not in for_each map)
+[0m  [31m-[0m[0m resource "aws_ec2_transit_gateway_route" "main_rt_spoke_routes" {
+      [31m-[0m[0m blackhole                      = false [90m-> null[0m[0m
+      [31m-[0m[0m destination_cidr_block         = "10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m id                             = "tgw-rtb-0c4129787b191ff75_10.0.152.0/21" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_attachment_id  = "tgw-attach-0dc892cf0ef32a657" [90m-> null[0m[0m
+      [31m-[0m[0m transit_gateway_route_table_id = "tgw-rtb-0c4129787b191ff75" [90m-> null[0m[0m
+    }
+
+[1mPlan:[0m 1 to add, 36 to change, 29 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m spoke_vpcs                      = {
+      [32m+[0m[0m dev_vpc1     = {
+          [32m+[0m[0m environment      = "dev"
+          [32m+[0m[0m internet_gateway = "igw-0f327ad18d9651563"
+          [32m+[0m[0m private_subnets  = [
+              [32m+[0m[0m "subnet-05e9ed18715f6f228",
+              [32m+[0m[0m "subnet-02a2a61ee4f9a552e",
+            ]
+          [32m+[0m[0m public_subnets   = [
+              [32m+[0m[0m "subnet-0163eb75dc9c2f322",
+              [32m+[0m[0m "subnet-0982fbc1efc339829",
+            ]
+          [32m+[0m[0m route_tables     = {
+              [32m+[0m[0m private = "rtb-032451ccc26135df2"
+              [32m+[0m[0m public  = "rtb-0d8848efe9cb9f740"
+            }
+          [32m+[0m[0m tgw_attachment   = "tgw-attach-000251f234853c5e6"
+          [32m+[0m[0m vpc_cidr         = "10.0.128.0/21"
+          [32m+[0m[0m vpc_id           = "vpc-0f24102f90e83d032"
+        }
+      [32m+[0m[0m dev_vpc2     = {
+          [32m+[0m[0m environment      = "dev"
+          [32m+[0m[0m internet_gateway = "igw-0c7507d652caa5fa6"
+          [32m+[0m[0m private_subnets  = [
+              [32m+[0m[0m "subnet-0aef32ce63b3899c8",
+              [32m+[0m[0m "subnet-052f514fe9e8e8d25",
+            ]
+          [32m+[0m[0m public_subnets   = [
+              [32m+[0m[0m "subnet-095ced0999e63b890",
+              [32m+[0m[0m "subnet-067a49de278d0022c",
+            ]
+          [32m+[0m[0m route_tables     = {
+              [32m+[0m[0m private = "rtb-0a8d8142179d8555f"
+              [32m+[0m[0m public  = "rtb-091deebb134023395"
+            }
+          [32m+[0m[0m tgw_attachment   = "tgw-attach-0a5be61478a736c88"
+          [32m+[0m[0m vpc_cidr         = "10.0.136.0/21"
+          [32m+[0m[0m vpc_id           = "vpc-024741c5ddde44954"
+        }
+      [32m+[0m[0m nonprod_vpc1 = {
+          [32m+[0m[0m environment      = "nonprod"
+          [32m+[0m[0m internet_gateway = "igw-09855a4da06131222"
+          [32m+[0m[0m private_subnets  = [
+              [32m+[0m[0m "subnet-03a272e8c13a5c571",
+              [32m+[0m[0m "subnet-0053ce368645aad45",
+            ]
+          [32m+[0m[0m public_subnets   = [
+              [32m+[0m[0m "subnet-05947efdfdf1f0010",
+              [32m+[0m[0m "subnet-06d84b69627a65944",
+            ]
+          [32m+[0m[0m route_tables     = {
+              [32m+[0m[0m private = "rtb-0c5c1bd9f0d3ca536"
+              [32m+[0m[0m public  = "rtb-0e53557df9d4d94ec"
+            }
+          [32m+[0m[0m tgw_attachment   = "tgw-attach-0ba28dab7ce80ce83"
+          [32m+[0m[0m vpc_cidr         = "10.0.144.0/21"
+          [32m+[0m[0m vpc_id           = "vpc-07a7c18d74c342449"
+        }
+      [32m+[0m[0m nonprod_vpc2 = {
+          [32m+[0m[0m environment      = "nonprod"
+          [32m+[0m[0m internet_gateway = "igw-09e3dc4c528f9d3fb"
+          [32m+[0m[0m private_subnets  = [
+              [32m+[0m[0m "subnet-0966d89341e8301d9",
+              [32m+[0m[0m "subnet-01ea221a7456236f4",
+            ]
+          [32m+[0m[0m public_subnets   = [
+              [32m+[0m[0m "subnet-024b204245ef09068",
+              [32m+[0m[0m "subnet-07f831ba08196654f",
+            ]
+          [32m+[0m[0m route_tables     = {
+              [32m+[0m[0m private = "rtb-088df17db8d7a5bc6"
+              [32m+[0m[0m public  = "rtb-02aeb7414e0938d68"
+            }
+          [32m+[0m[0m tgw_attachment   = "tgw-attach-0dc892cf0ef32a657"
+          [32m+[0m[0m vpc_cidr         = "10.0.152.0/21"
+          [32m+[0m[0m vpc_id           = "vpc-0ffe51b0a7b043d46"
+        }
+    }
+  [32m+[0m[0m vpc_summary                     = {
+      [32m+[0m[0m environments = {
+          [32m+[0m[0m dev     = 2
+          [32m+[0m[0m nonprod = 2
+        }
+      [32m+[0m[0m total_vpcs   = 4
+      [32m+[0m[0m vpc_names    = [
+          [32m+[0m[0m "dev_vpc1",
+          [32m+[0m[0m "dev_vpc2",
+          [32m+[0m[0m "nonprod_vpc1",
+          [32m+[0m[0m "nonprod_vpc2",
+        ]
+    }
+  [32m+[0m[0m vpcs_by_environment             = {
+      [32m+[0m[0m dev     = {
+          [32m+[0m[0m dev_vpc1 = {
+              [32m+[0m[0m vpc_cidr = "10.0.128.0/21"
+              [32m+[0m[0m vpc_id   = "vpc-0f24102f90e83d032"
+            }
+          [32m+[0m[0m dev_vpc2 = {
+              [32m+[0m[0m vpc_cidr = "10.0.136.0/21"
+              [32m+[0m[0m vpc_id   = "vpc-024741c5ddde44954"
+            }
+        }
+      [32m+[0m[0m nonprod = {
+          [32m+[0m[0m nonprod_vpc1 = {
+              [32m+[0m[0m vpc_cidr = "10.0.144.0/21"
+              [32m+[0m[0m vpc_id   = "vpc-07a7c18d74c342449"
+            }
+          [32m+[0m[0m nonprod_vpc2 = {
+              [32m+[0m[0m vpc_cidr = "10.0.152.0/21"
+              [32m+[0m[0m vpc_id   = "vpc-0ffe51b0a7b043d46"
+            }
+        }
+    }
