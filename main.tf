@@ -118,7 +118,7 @@ module "network_firewall" {
 # Add Spoke VPC module
 module "spoke_vpcs" {
   for_each = var.spoke_vpc_configs
-  source   = "github.com/rsm-lab-code/spoke//vpc?ref=main"
+  source   = "github.com/rsm-lab-code/tfg-spoke//vpc?ref=main"
   
   vpc_config = each.value
   aws_regions = var.aws_regions
