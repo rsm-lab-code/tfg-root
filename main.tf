@@ -151,7 +151,7 @@ module "dev_vpc1" {
 
   #VPC name
   vpc_name = "dev_vpc1"
-
+  environment = "dev"
   # Account IDs
   delegated_account_id = var.delegated_account_id
 
@@ -184,6 +184,9 @@ module "dev_vpc2" {
   source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc2?ref=main"
   #source = "./spoke/dev_vpc2"
 
+  #VPC Name 
+  vpc_name = "dev-vpc2"
+  environment = "dev"
   # Account IDs
   delegated_account_id = var.delegated_account_id
 
@@ -214,6 +217,10 @@ module "dev_vpc2" {
 module "nonprod_vpc1" {
   source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc1?ref=main"
   #source = "./spoke/nonprod_vpc1"
+  
+  # VPC name and environment
+  vpc_name = "nonprod-vpc1"
+  environment = "nonprod"
 
   # Account IDs
   delegated_account_id = var.delegated_account_id
@@ -246,7 +253,10 @@ module "nonprod_vpc1" {
 module "nonprod_vpc2" {
   source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc2?ref=main"
   #source = "./spoke/nonprod_vpc2"
-
+   
+ # VPC name and environment
+  vpc_name = "nonprod-vpc2"
+  environment = "nonprod"
   # Account IDs
   delegated_account_id = var.delegated_account_id
 
