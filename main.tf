@@ -33,6 +33,17 @@ module "ipam" {
     aws.delegated_account_us-east-1 = aws.delegated_account_us-east-1
   }
 }
+#locals block to manage all spoke VPC CIDRs:
+locals {
+  all_vpc_cidrs = {
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
+}
+
+
 # Add Inspection VPC module
 module "inspection_vpc" {
   #source = "../hub/inspection_vpc"
@@ -41,9 +52,15 @@ module "inspection_vpc" {
   subnet_pool_id = module.ipam.subnet_pool_ids["us-west-2-prod-subnet1"]
   vpc_cidr_netmask = 24
   subnet_prefix = 3
-  #Empty cidr because of circular dependency
+  
+  spoke_vpc_cidrs = {
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+    # Add any future VPCs here
+  }
 
-  spoke_vpc_cidrs = { }
   # AWS region
   aws_regions = var.aws_regions
   #Transit gateway id
@@ -82,7 +99,25 @@ module "tgw" {
 }
    
   #Pass Spoke VPC attachement info
-  spoke_vpc_attachments = { }
+    spoke_vpc_attachments = {
+    dev_vpc1 = {
+      cidr_block    = module.dev_vpc1.vpc_cidr
+      attachment_id = module.dev_vpc1.tgw_attachment_id
+    }
+    dev_vpc2 = {
+      cidr_block    = module.dev_vpc2.vpc_cidr
+      attachment_id = module.dev_vpc2.tgw_attachment_id
+    }
+    nonprod_vpc1 = {
+      cidr_block    = module.nonprod_vpc1.vpc_cidr
+      attachment_id = module.nonprod_vpc1.tgw_attachment_id
+    }
+    nonprod_vpc2 = {
+      cidr_block    = module.nonprod_vpc2.vpc_cidr
+      attachment_id = module.nonprod_vpc2.tgw_attachment_id
+    }
+  }
+
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
@@ -110,24 +145,132 @@ module "network_firewall" {
 
 
 # Add Spoke VPC module
-module "spoke_vpcs" {
-  for_each = var.spoke_vpc_configs
-  source   = "github.com/rsm-lab-code/tfg-spoke?ref=main"
-  
-  vpc_config = each.value
-  aws_regions = var.aws_regions
+module "dev_vpc1" {
+  #source = "../spoke/vpc"
+  source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc1?ref=main"
+
+  #VPC name
+  vpc_name = "dev_vpc1"
+
+  # Account IDs
   delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
   ipam_pool_ids = module.ipam.subnet_pool_ids
-  transit_gateway_id = module.tgw.tgw_id
+
+   # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
   
-  # Route table assignment based on environment
-  transit_gateway_route_table_id = each.value.environment == "production" ? module.tgw.main_rt_id : module.tgw.nonprod_tgw_rt_id  
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.dev_tgw_rt_id
+  
+  #other spoke vpc routes
+    spoke_vpc_routes = {
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
+
+  providers = {
+  aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+   
+  }
+}
+
+
+module "dev_vpc2" {
+  source = "github.com/rsm-lab-code/tfg-spoke//dev_vpc2?ref=main"
+  #source = "./spoke/dev_vpc2"
+
+  # Account IDs
+  delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
+  ipam_pool_ids = module.ipam.subnet_pool_ids
+
+  # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
+
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.dev_tgw_rt_id
+  
+  #Other spoke vpc routes
+    spoke_vpc_routes = {
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
+
+
+  providers = {
+    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+  }
+}
+
+module "nonprod_vpc1" {
+  source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc1?ref=main"
+  #source = "./spoke/nonprod_vpc1"
+
+  # Account IDs
+  delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
+  ipam_pool_ids = module.ipam.subnet_pool_ids
+
+  # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
+
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.nonprod_tgw_rt_id
+   
+  #Other Spoke VPC routes
+
+    spoke_vpc_routes = {
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc2 = module.nonprod_vpc2.vpc_cidr
+  }
+
+  providers = {
+    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+  }
+}
+
+
+module "nonprod_vpc2" {
+  source = "github.com/rsm-lab-code/tfg-spoke//nonprod_vpc2?ref=main"
+  #source = "./spoke/nonprod_vpc2"
+
+  # Account IDs
+  delegated_account_id = var.delegated_account_id
+
+  # IPAM pool IDs
+  ipam_pool_ids = module.ipam.subnet_pool_ids
+
+  # CIDR allocation settings
+  vpc_cidr_netmask = 21
+  subnet_prefix = 3
+
+  # Transit Gateway ID and route table
+  transit_gateway_id = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.nonprod_tgw_rt_id
+
+  #Other Spoke VPC routes
+    spoke_vpc_routes = {
+    dev_vpc1     = module.dev_vpc1.vpc_cidr
+    dev_vpc2     = module.dev_vpc2.vpc_cidr
+    nonprod_vpc1 = module.nonprod_vpc1.vpc_cidr
+  }
   
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
   }
-  
-  depends_on = [module.ipam, module.tgw]
 }
 
 
