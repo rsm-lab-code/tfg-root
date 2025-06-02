@@ -253,6 +253,7 @@ module "nonprod_vpc2" {
    
  # VPC name and environment
   vpc_name = "nonprod-vpc2"
+  environment = "nonprod"
   # Account IDs
   delegated_account_id = var.delegated_account_id
 
