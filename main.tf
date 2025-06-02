@@ -168,7 +168,7 @@ module "network_firewall" {
 
 # Create all VPCs dynamically using for_each
 module "spoke_vpcs" {
-  source = "github.com/rsm-lab-code/tfg-spoke?ref=main"
+  source = "github.com/rsm-lab-code/tfg-spoke//generic_vpc?ref=main"
   for_each = local.vpc_configurations
 
   # Basic configuration
