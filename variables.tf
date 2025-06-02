@@ -35,3 +35,24 @@ variable "rsm_vpn" {
   default     = "66.98.96.0/20"   
 }
 
+# spoke vpc variables
+variable "spoke_vpc_configs" {
+  description = "Configuration for spoke VPCs"
+  type = map(object({
+    name         = string
+    environment  = string
+    ipam_pool_key = string
+  }))
+  default = {
+    prod_vpc = {
+      name         = "prod-vpc"
+      environment  = "production"
+      ipam_pool_key = "us-west-2-prod-subnet1"
+    }
+    nonprod_vpc = {
+      name         = "nonprod-vpc"
+      environment  = "non-production"
+      ipam_pool_key = "us-west-2-nonprod-subnet1"
+    }
+  }
+}

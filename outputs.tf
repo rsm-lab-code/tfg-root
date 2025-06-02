@@ -23,27 +23,29 @@ output "subnet_pool_ids" {
   value       = module.ipam.subnet_pool_ids
 }
 
-output "vpc_ids" {
-  description = "IDs of the created VPCs"
-  value       = module.dev_vpc1.vpc_id
-}
-
-output "vpc_cidrs" {
-  description = "CIDR blocks of the created VPCs"
-  value       = module.dev_vpc1.vpc_cidr
-}
-
-output "subnet_ids" {
-  description = "IDs of the created subnets"
-  value       = {
-    public  = module.dev_vpc1.public_subnet_ids
-    private = module.dev_vpc1.private_subnet_ids
+#Spoke VPC outputs
+output "spoke_vpc_details" {
+  description = "Details of all spoke VPCs"
+  value = {
+    for k, v in module.spoke_vpcs : k => {
+      vpc_id   = v.vpc_id
+      vpc_cidr = v.vpc_cidr
+      public_subnets = v.public_subnet_ids
+      private_subnets = v.private_subnet_ids
+      tgw_attachment_id = v.tgw_attachment_id
+      environment = var.spoke_vpc_configs[k].environment
+    }
   }
 }
 
-output "route_table_ids" {
-  description = "IDs of the route tables"
-  value       = module.dev_vpc1.route_table_ids
+output "vpc_cidrs_summary" {
+  description = "Summary of all VPC CIDR blocks"
+  value = {
+    inspection = module.inspection_vpc.vpc_cidr
+    spoke_vpcs = {
+      for k, v in module.spoke_vpcs : k => v.vpc_cidr
+    }
+  }
 }
 
 # Transit Gateway outputs
@@ -112,24 +114,6 @@ output "firewall_endpoint_ids" {
   value       = module.network_firewall.firewall_endpoint_ids
 }
 
-# Add outputs for dev_vpc2
-output "dev_vpc2_id" {
-  description = "ID of dev_vpc2"
-  value       = module.dev_vpc2.vpc_id
-}
-
-output "dev_vpc2_cidr" {
-  description = "CIDR block of dev_vpc2"
-  value       = module.dev_vpc2.vpc_cidr
-}
-
-output "dev_vpc2_subnet_ids" {
-  description = "Subnet IDs in dev_vpc2"
-  value       = {
-    public  = module.dev_vpc2.public_subnet_ids
-    private = module.dev_vpc2.private_subnet_ids
-  }
-}
 
 
 # AWS Config test outputs
