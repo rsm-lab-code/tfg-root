@@ -41,10 +41,9 @@ module "inspection_vpc" {
   subnet_pool_id = module.ipam.subnet_pool_ids["us-west-2-prod-subnet1"]
   vpc_cidr_netmask = 24
   subnet_prefix = 3
-  
-  spoke_vpc_cidrs = {
-    for k, v in module.spoke_vpcs : k => v.vpc_cidr
-  }
+  #Empty cidr because of circular dependency
+
+  spoke_vpc_cidrs = { }
   # AWS region
   aws_regions = var.aws_regions
   #Transit gateway id
@@ -83,12 +82,7 @@ module "tgw" {
 }
    
   #Pass Spoke VPC attachement info
-  spoke_vpc_attachments = {
-    for k, v in module.spoke_vpcs : k => {
-      cidr_block    = v.vpc_cidr
-      attachment_id = v.tgw_attachment_id
-    }
-  }
+  spoke_vpc_attachments = { }
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
@@ -128,11 +122,6 @@ module "spoke_vpcs" {
   
   # Route table assignment based on environment
   transit_gateway_route_table_id = each.value.environment == "production" ? module.tgw.main_rt_id : module.tgw.nonprod_tgw_rt_id  
-  # Dynamic spoke VPC routes (excludes self)
-  spoke_vpc_routes = {
-    for k, v in module.spoke_vpcs : k => v.vpc_cidr
-    if k != each.key
-  }
   
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
