@@ -70,7 +70,7 @@ locals {
       vpc_cidr_netmask       = 21
       subnet_prefix          = 3
       availability_zones     = ["us-west-2a", "us-west-2b"]
-      ipam_pool_key         = "us-west-2-prod-subnet1"
+      ipam_pool_key         = "us-west-2-prod-subnet2"
       tgw_route_table_type  = "prod"
       create_igw            = true
     }
