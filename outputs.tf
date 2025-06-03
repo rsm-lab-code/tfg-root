@@ -201,3 +201,25 @@ output "config_test_bucket" {
   description = "Config test bucket name"
   value       = module.aws_config_test.config_bucket_name
 }
+
+
+# Route Manager outputs
+output "tgw_route_summary" {
+  description = "Summary of all Transit Gateway routes created"
+  value       = module.spoke_route_manager.total_routes_created
+}
+
+output "routes_by_vpc" {
+  description = "Routing information organized by VPC"
+  value       = module.spoke_route_manager.routes_by_vpc
+}
+
+output "inspection_rt_routes" {
+  description = "Routes in the inspection route table"
+  value       = module.spoke_route_manager.inspection_rt_routes
+}
+
+output "main_rt_routes" {
+  description = "Routes in the main route table"
+  value       = module.spoke_route_manager.main_rt_routes
+}
