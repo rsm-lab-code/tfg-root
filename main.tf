@@ -145,12 +145,12 @@ module "tgw" {
 }
    
   #Pass Spoke VPC attachement info
-  #spoke_vpc_attachments = {
-  # for name, vpc in module.spoke_vpcs : name => {
-  #   cidr_block    = vpc.vpc_cidr
-  #   attachment_id = vpc.tgw_attachment_id
-  # }
-  #}
+  spoke_vpc_attachments = {
+   for name, vpc in module.spoke_vpcs : name => {
+     cidr_block    = vpc.vpc_cidr
+     attachment_id = vpc.tgw_attachment_id
+   }
+  }
 
   spoke_vpc_attachments = {}
 
