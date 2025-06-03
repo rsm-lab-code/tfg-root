@@ -105,7 +105,7 @@ module "inspection_vpc" {
   subnet_prefix = 3
   
   #spoke_vpc_cidrs = local.all_vpc_cidrs
-  spoke_vpc_cidrs = {}
+  spoke_vpc_cidrs = local.all_vpc_cidrs 
 
   # AWS region
   aws_regions = var.aws_regions
