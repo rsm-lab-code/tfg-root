@@ -115,7 +115,7 @@ module "inspection_vpc" {
   vpc_cidr_netmask = 24
   subnet_prefix = 3
   
-  #spoke_vpc_cidrs = local.all_vpc_cidrs
+  #spoke vpc cidrs 
   spoke_vpc_cidrs = local.all_vpc_cidrs 
 
   # AWS region
@@ -155,16 +155,6 @@ module "tgw" {
   b = module.inspection_vpc.tgw_route_tables.b
 }
    
-  #Pass Spoke VPC attachement info
-  #spoke_vpc_attachments = {
-  #for name, vpc in module.spoke_vpcs : name => {
-  #  cidr_block    = vpc.vpc_cidr
-  #  attachment_id = vpc.tgw_attachment_id
-  # }
-  #}
-
-  # spoke_vpc_attachments = {}
-
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
   }
@@ -213,11 +203,6 @@ module "spoke_vpcs" {
   transit_gateway_id               = module.tgw.tgw_id
   transit_gateway_route_table_id   = module.tgw.route_table_ids[each.value.tgw_route_table_type]
 
-  # Routes to other VPCs (excluding self)
-  # spoke_vpc_routes = {
-  #for name, cidr in local.all_vpc_cidrs : name => cidr
-  #if name != each.key
-  #}
 
   # Common tags
   common_tags = {
