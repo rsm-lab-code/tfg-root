@@ -64,6 +64,16 @@ locals {
       tgw_route_table_type  = "nonprod"
       create_igw            = true
     }
+
+    prod_vpc1 = {
+      environment             = "prod"
+      vpc_cidr_netmask       = 21
+      subnet_prefix          = 3
+      availability_zones     = ["us-west-2a", "us-west-2b"]
+      ipam_pool_key         = "us-west-2-prod-subnet1"
+      tgw_route_table_type  = "prod"
+      create_igw            = true
+    }
   }
 
   # Helper to get all VPC CIDRs for routing (will be populated after VPCs are created)

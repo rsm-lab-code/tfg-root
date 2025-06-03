@@ -114,6 +114,7 @@ output "transit_gateway_route_table_ids" {
     main       = module.tgw.main_rt_id
     dev        = module.tgw.dev_tgw_rt_id
     nonprod    = module.tgw.nonprod_tgw_rt_id
+    prod       = module.tgw.prod_tgw_rt_id
   }
 }
 
@@ -157,7 +158,7 @@ output "firewall_endpoint_ids" {
   value       = module.network_firewall.firewall_endpoint_ids
 }
 
-# Add outputs for dev_vpc2 - FIXED to use new module structure
+#outputs for dev_vpc2 
 output "dev_vpc2_id" {
   description = "ID of dev_vpc2"
   value       = module.spoke_vpcs["dev_vpc2"].vpc_id
@@ -173,6 +174,25 @@ output "dev_vpc2_subnet_ids" {
   value       = {
     public  = module.spoke_vpcs["dev_vpc2"].public_subnet_ids
     private = module.spoke_vpcs["dev_vpc2"].private_subnet_ids
+  }
+}
+
+#outputs for prod_vpc1
+output "prod_vpc1_id" {
+  description = "ID of prod_vpc1"
+  value       = module.spoke_vpcs["prod_vpc1"].vpc_id
+}
+
+output "prod_vpc1_cidr" {
+  description = "CIDR block of prod_vpc1"
+  value       = module.spoke_vpcs["prod_vpc1"].vpc_cidr
+}
+
+output "prod_vpc1_subnet_ids" {
+  description = "Subnet IDs in prod_vpc1"
+  value       = {
+    public  = module.spoke_vpcs["prod_vpc1"].public_subnet_ids
+    private = module.spoke_vpcs["prod_vpc1"].private_subnet_ids
   }
 }
 
