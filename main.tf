@@ -145,12 +145,12 @@ module "tgw" {
 }
    
   #Pass Spoke VPC attachement info
-  spoke_vpc_attachments = {
-   for name, vpc in module.spoke_vpcs : name => {
-     cidr_block    = vpc.vpc_cidr
-     attachment_id = vpc.tgw_attachment_id
-   }
-  }
+  #spoke_vpc_attachments = {
+  #for name, vpc in module.spoke_vpcs : name => {
+  #  cidr_block    = vpc.vpc_cidr
+  #  attachment_id = vpc.tgw_attachment_id
+  # }
+  #}
 
   # spoke_vpc_attachments = {}
 
@@ -258,4 +258,33 @@ module "aws_config_test" {
    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
    aws.management_account_us-west-2 = aws.management_account_us-west-2
  }
+} 
+
+
+
+module "spoke_route_manager" {
+  # source = "./modules/spoke_route_manager"  
+  source = "github.com/rsm-lab-code/tfg-spoke//route_manager?ref=main"  
+
+  spoke_vpc_attachments = {
+    for name, vpc in module.spoke_vpcs : name => {
+      cidr_block    = vpc.vpc_cidr
+      attachment_id = vpc.tgw_attachment_id
+    }
+  }
+
+  vpc_environments = {
+    for name, config in local.vpc_configurations : name => config.environment
+  }
+
+  inspection_rt_id = module.tgw.inspection_rt_id
+  main_rt_id       = module.tgw.main_rt_id
+  dev_rt_id        = module.tgw.dev_tgw_rt_id
+  nonprod_rt_id    = module.tgw.nonprod_tgw_rt_id
+
+  providers = {
+    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
+  }
+
+  depends_on = [module.spoke_vpcs, module.tgw]
 }
