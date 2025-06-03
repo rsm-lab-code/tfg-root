@@ -152,7 +152,7 @@ module "tgw" {
    }
   }
 
-  spoke_vpc_attachments = {}
+  # spoke_vpc_attachments = {}
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
