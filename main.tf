@@ -178,7 +178,9 @@ module "spoke_vpcs" {
   environment          = each.value.environment
   delegated_account_id = var.delegated_account_id
   ipam_pool_id         = module.ipam.subnet_pool_ids[each.value.ipam_pool_key]
-
+   
+  #defaul Availability zones
+  vailability_zones   = ["us-west-2a", "us-west-2b"]
   # Transit Gateway configuration
   transit_gateway_id             = module.tgw.tgw_id
   transit_gateway_route_table_id = module.tgw.route_table_ids[each.value.environment]
@@ -187,7 +189,6 @@ module "spoke_vpcs" {
   vpc_cidr_netmask = try(each.value.vpc_cidr_netmask, null)  # Keep /21 as default
   subnet_prefix    = try(each.value.subnet_prefix, null)
   create_igw       = try(each.value.create_igw, null)
-  # availability_zones not specified - spoke module will use dynamic lookup
 
   # Common tags
   common_tags = {
