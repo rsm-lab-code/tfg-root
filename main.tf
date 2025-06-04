@@ -37,16 +37,16 @@ locals {
     prod    = "prod"
   }
   
-  # Available pools per IPAM environment (based on your IPAM module)
+  # Available pools per IPAM environment 
   pools_per_env = {
-    nonprod = 4  # nonprod has subnet1 through subnet4
-    prod    = 4  # prod has subnet1 through subnet4
+    nonprod = 4  # nonprod has Vpc1 through vpc4
+    prod    = 4  # prod has vpc1 through vpc4
   }
   
-  # Reserved pools (inspection VPC uses prod-subnet1)
+  # Reserved pools (inspection VPC uses prod-vpc1)
   reserved_pools = {
     nonprod = []  # no reserved pools for nonprod
-    prod    = [1]  # prod-subnet1 is reserved for inspection VPC
+    prod    = [1]  # prod-vpc1 is reserved for inspection VPC
   }
   
   # Create ordered list of all VPCs we want to create
