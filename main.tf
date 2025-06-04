@@ -74,7 +74,7 @@ locals {
       tgw_route_table_type  = "prod"
       create_igw            = true
     }
-/*
+
    prod_vpc2 = {
     environment             = "prod"
     vpc_cidr_netmask       = 21
@@ -84,7 +84,7 @@ locals {
     tgw_route_table_type   = "prod"
     create_igw             = true
    }
-*/
+
   }
 
   # Helper to get all VPC CIDRs for routing (will be populated after VPCs are created)
