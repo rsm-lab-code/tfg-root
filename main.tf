@@ -25,14 +25,14 @@
 locals {
   # Define how many VPCs you want per environment
   vpc_counts = {
-    dev     = 2  
+    #dev     = 2  
     nonprod = 2  
     prod    = 2
   }
   
   # Map logical environments to IPAM environments
   env_to_ipam_mapping = {
-    dev     = "nonprod"  # dev uses nonprod IPAM pools
+    #dev     = "nonprod"  # dev uses nonprod IPAM pools
     nonprod = "nonprod" 
     prod    = "prod"
   }
@@ -43,17 +43,35 @@ locals {
     prod    = 4  # prod has subnet1 through subnet4
   }
   
-  # Generate VPC configurations dynamically
-  vpc_configurations = merge(flatten([
+  # Create ordered list of all VPCs we want to create
+  vpc_creation_order = flatten([
     for env, count in local.vpc_counts : [
       for i in range(1, count + 1) : {
-        "${env}_vpc${i}" = {
-          environment   = env
-          ipam_pool_key = "us-west-2-${local.env_to_ipam_mapping[env]}-subnet${((i - 1) % local.pools_per_env[local.env_to_ipam_mapping[env]]) + 1}"
-        }
+        vpc_name = "${env}_vpc${i}"
+        environment = env
+        ipam_env = local.env_to_ipam_mapping[env]
       }
     ]
-  ])...)
+  ])
+  
+  # Track pool usage per IPAM environment
+  pool_usage = {
+    for ipam_env in keys(local.pools_per_env) : ipam_env => [
+      for idx, vpc in local.vpc_creation_order : vpc
+      if vpc.ipam_env == ipam_env
+    ]
+  }
+  
+  # Generate VPC configurations with automatic pool assignment
+  vpc_configurations = {
+    for vpc in local.vpc_creation_order : vpc.vpc_name => {
+      environment = vpc.environment
+      ipam_pool_key = "us-west-2-${vpc.ipam_env}-subnet${
+        # Find the position of this VPC in its IPAM environment group + 1
+        index(local.pool_usage[vpc.ipam_env], vpc) + 1
+      }"
+    }
+  }
 
   # Helper to get all VPC CIDRs for routing (will be populated after VPCs are created)
   all_vpc_cidrs = {
@@ -163,7 +181,7 @@ module "spoke_vpcs" {
   transit_gateway_route_table_id = module.tgw.route_table_ids[each.value.environment]
 
   # Optional overrides (spoke module provides defaults)
-  vpc_cidr_netmask = try(each.value.vpc_cidr_netmask, null)
+  vpc_cidr_netmask = try(each.value.vpc_cidr_netmask, null)  # Keep /21 as default
   subnet_prefix    = try(each.value.subnet_prefix, null)
   create_igw       = try(each.value.create_igw, null)
   # availability_zones not specified - spoke module will use dynamic lookup
