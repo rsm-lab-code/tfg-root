@@ -69,30 +69,6 @@ output "vpc_summary" {
   }
 }
 
-# Backward compatibility outputs
-output "vpc_ids" {
-  description = "IDs of the created VPCs (backward compatibility)"
-  value       = module.spoke_vpcs["dev_vpc1"].vpc_id
-}
-
-output "vpc_cidrs" {
-  description = "CIDR blocks of the created VPCs (backward compatibility)"
-  value       = module.spoke_vpcs["dev_vpc1"].vpc_cidr
-}
-
-output "subnet_ids" {
-  description = "IDs of the created subnets (backward compatibility)"
-  value       = {
-    public  = module.spoke_vpcs["dev_vpc1"].public_subnet_ids
-    private = module.spoke_vpcs["dev_vpc1"].private_subnet_ids
-  }
-}
-
-output "route_table_ids" {
-  description = "IDs of the route tables (backward compatibility)"
-  value       = module.spoke_vpcs["dev_vpc1"].route_table_ids
-}
-
 # Transit Gateway outputs
 output "transit_gateway_id" {
   description = "ID of the created Transit Gateway"
@@ -158,50 +134,11 @@ output "firewall_endpoint_ids" {
   value       = module.network_firewall.firewall_endpoint_ids
 }
 
-#outputs for dev_vpc2 
-output "dev_vpc2_id" {
-  description = "ID of dev_vpc2"
-  value       = module.spoke_vpcs["dev_vpc2"].vpc_id
-}
-
-output "dev_vpc2_cidr" {
-  description = "CIDR block of dev_vpc2"
-  value       = module.spoke_vpcs["dev_vpc2"].vpc_cidr
-}
-
-output "dev_vpc2_subnet_ids" {
-  description = "Subnet IDs in dev_vpc2"
-  value       = {
-    public  = module.spoke_vpcs["dev_vpc2"].public_subnet_ids
-    private = module.spoke_vpcs["dev_vpc2"].private_subnet_ids
-  }
-}
-
-#outputs for prod_vpc1
-output "prod_vpc1_id" {
-  description = "ID of prod_vpc1"
-  value       = module.spoke_vpcs["prod_vpc1"].vpc_id
-}
-
-output "prod_vpc1_cidr" {
-  description = "CIDR block of prod_vpc1"
-  value       = module.spoke_vpcs["prod_vpc1"].vpc_cidr
-}
-
-output "prod_vpc1_subnet_ids" {
-  description = "Subnet IDs in prod_vpc1"
-  value       = {
-    public  = module.spoke_vpcs["prod_vpc1"].public_subnet_ids
-    private = module.spoke_vpcs["prod_vpc1"].private_subnet_ids
-  }
-}
-
 # AWS Config test outputs
 output "config_test_bucket" {
   description = "Config test bucket name"
   value       = module.aws_config_test.config_bucket_name
 }
-
 
 # Route Manager outputs
 output "tgw_route_summary" {

@@ -29,9 +29,4 @@ variable "management_account_id" {
   type        = string
 }
 
-variable "rsm_vpn" {
-  description = "IP address allowed for SSH access (CIDR notation)"
-  type        = string
-  default     = "66.98.96.0/20"   
-}
 
