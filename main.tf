@@ -180,7 +180,7 @@ module "spoke_vpcs" {
   ipam_pool_id         = module.ipam.subnet_pool_ids[each.value.ipam_pool_key]
    
   #defaul Availability zones
-  vailability_zones   = ["us-west-2a", "us-west-2b"]
+  availability_zones   = ["us-west-2a", "us-west-2b"]
   # Transit Gateway configuration
   transit_gateway_id             = module.tgw.tgw_id
   transit_gateway_route_table_id = module.tgw.route_table_ids[each.value.environment]
