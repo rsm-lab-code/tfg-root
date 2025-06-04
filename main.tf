@@ -25,20 +25,35 @@
 locals {
   # Define how many VPCs you want per environment
   vpc_counts = {
-    dev     = 2
+    dev     = 2  
     nonprod = 2  
     prod    = 2
   }
   
+  # Map logical environments to IPAM environments
+  env_to_ipam_mapping = {
+    dev     = "nonprod"  # dev uses nonprod IPAM pools
+    nonprod = "nonprod" 
+    prod    = "prod"
+  }
+  
+  # Available pools per IPAM environment (based on your IPAM module)
+  pools_per_env = {
+    nonprod = 4  # nonprod has subnet1 through subnet4
+    prod    = 4  # prod has subnet1 through subnet4
+  }
+  
   # Generate VPC configurations dynamically
-  vpc_configurations = merge([
-    for env, count in local.vpc_counts : {
-      for i in range(1, count + 1) : "${env}_vpc${i}" => {
-        environment   = env
-        ipam_pool_key = "us-west-2-${env}-subnet${i}"
+  vpc_configurations = merge(flatten([
+    for env, count in local.vpc_counts : [
+      for i in range(1, count + 1) : {
+        "${env}_vpc${i}" = {
+          environment   = env
+          ipam_pool_key = "us-west-2-${local.env_to_ipam_mapping[env]}-subnet${((i - 1) % local.pools_per_env[local.env_to_ipam_mapping[env]]) + 1}"
+        }
       }
-    }
-  ]...)
+    ]
+  ])...)
 
   # Helper to get all VPC CIDRs for routing (will be populated after VPCs are created)
   all_vpc_cidrs = {
