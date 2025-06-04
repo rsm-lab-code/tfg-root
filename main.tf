@@ -32,15 +32,21 @@ locals {
   
   # Map logical environments to IPAM environments
   env_to_ipam_mapping = {
-    #dev     = "nonprod"  # dev uses nonprod IPAM pools
+    dev     = "nonprod"  # dev uses nonprod IPAM pools
     nonprod = "nonprod" 
     prod    = "prod"
   }
   
-  # Available pools per IPAM environment (based on your IPAM module)
+  # Available pools per IPAM environment 
   pools_per_env = {
     nonprod = 4  # nonprod has subnet1 through subnet4
     prod    = 4  # prod has subnet1 through subnet4
+  }
+  
+  # Reserved pools (inspection VPC uses prod-subnet1)
+  reserved_pools = {
+    nonprod = []  # no reserved pools for nonprod
+    prod    = [1]  # prod-subnet1 is reserved for inspection VPC
   }
   
   # Create ordered list of all VPCs we want to create
@@ -67,8 +73,8 @@ locals {
     for vpc in local.vpc_creation_order : vpc.vpc_name => {
       environment = vpc.environment
       ipam_pool_key = "us-west-2-${vpc.ipam_env}-subnet${
-        # Find the position of this VPC in its IPAM environment group + 1
-        index(local.pool_usage[vpc.ipam_env], vpc) + 1
+        # Find the position of this VPC in its IPAM environment group + skip reserved pools
+        index(local.pool_usage[vpc.ipam_env], vpc) + 1 + length(local.reserved_pools[vpc.ipam_env])
       }"
     }
   }
