@@ -25,14 +25,14 @@
 locals {
   # Define how many VPCs you want per environment
   vpc_counts = {
-    dev     = 2  
+   # dev     = 2  
     nonprod = 2  
     prod    = 2
   }
   
   # Map logical environments to IPAM environments
   env_to_ipam_mapping = {
-    dev     = "nonprod"  # dev uses nonprod IPAM pools
+    #dev     = "nonprod"  # dev uses nonprod IPAM pools
     nonprod = "nonprod" 
     prod    = "prod"
   }
@@ -72,9 +72,7 @@ locals {
   vpc_configurations = {
     for vpc in local.vpc_creation_order : vpc.vpc_name => {
       environment = vpc.environment
-      ipam_pool_key = vpc.ipam_env == "prod" ? 
-        "us-west-2-prod-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 2}" :  # Start from subnet for prod (skip 1)
-        "us-west-2-${vpc.ipam_env}-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 1}"     # Start from subnet1 for nonprod
+      ipam_pool_key = vpc.ipam_env == "prod" ? "us-west-2-prod-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 2}" : "us-west-2-${vpc.ipam_env}-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 1}"
     }
   }
 
