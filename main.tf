@@ -21,40 +21,24 @@
   #}
   #}
 
-# VPC Configuration - Only specify unique values, defaults handled by spoke module
+# VPC Configuration - Dynamic generation based on vpc_counts
 locals {
-  vpc_configurations = {
-    
-    dev_vpc1 = {
-      environment   = "dev"
-      ipam_pool_key = "us-west-2-nonprod-subnet1"
-    }
-  
-    dev_vpc2 = {
-      environment   = "dev"
-      ipam_pool_key = "us-west-2-nonprod-subnet2"
-    }
-    
-    nonprod_vpc1 = {
-      environment   = "nonprod"
-      ipam_pool_key = "us-west-2-nonprod-subnet3"
-    }
-    
-    nonprod_vpc2 = {
-      environment   = "nonprod"
-      ipam_pool_key = "us-west-2-nonprod-subnet4"
-    }
-
-    prod_vpc1 = {
-      environment   = "prod"
-      ipam_pool_key = "us-west-2-prod-subnet2"
-    }
-
-    prod_vpc2 = {
-      environment   = "prod"
-      ipam_pool_key = "us-west-2-prod-subnet3"
-    }
+  # Define how many VPCs you want per environment
+  vpc_counts = {
+    dev     = 2
+    nonprod = 2  
+    prod    = 2
   }
+  
+  # Generate VPC configurations dynamically
+  vpc_configurations = merge([
+    for env, count in local.vpc_counts : {
+      for i in range(1, count + 1) : "${env}_vpc${i}" => {
+        environment   = env
+        ipam_pool_key = "us-west-2-${env}-subnet${i}"
+      }
+    }
+  ]...)
 
   # Helper to get all VPC CIDRs for routing (will be populated after VPCs are created)
   all_vpc_cidrs = {
