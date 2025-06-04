@@ -25,7 +25,7 @@
 locals {
   # Define how many VPCs you want per environment
   vpc_counts = {
-    #dev     = 2  
+    dev     = 2  
     nonprod = 2  
     prod    = 2
   }
@@ -37,7 +37,7 @@ locals {
     prod    = "prod"
   }
   
-  # Available pools per IPAM environment 
+  # Available pools per IPAM environment (based on your IPAM module)
   pools_per_env = {
     nonprod = 4  # nonprod has subnet1 through subnet4
     prod    = 4  # prod has subnet1 through subnet4
@@ -72,10 +72,9 @@ locals {
   vpc_configurations = {
     for vpc in local.vpc_creation_order : vpc.vpc_name => {
       environment = vpc.environment
-      ipam_pool_key = "us-west-2-${vpc.ipam_env}-subnet${
-        # Find the position of this VPC in its IPAM environment group + skip reserved pools
-        index(local.pool_usage[vpc.ipam_env], vpc) + 1 + length(local.reserved_pools[vpc.ipam_env])
-      }"
+      ipam_pool_key = vpc.ipam_env == "prod" ? 
+        "us-west-2-prod-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 2}" :  # Start from subnet for prod (skip 1)
+        "us-west-2-${vpc.ipam_env}-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 1}"     # Start from subnet1 for nonprod
     }
   }
 
