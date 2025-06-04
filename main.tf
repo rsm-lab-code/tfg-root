@@ -256,7 +256,7 @@ module "spoke_route_manager" {
 
   inspection_rt_id = module.tgw.inspection_rt_id
   main_rt_id       = module.tgw.main_rt_id
-  dev_rt_id        = module.tgw.dev_tgw_rt_id
+  # dev_rt_id        = module.tgw.dev_tgw_rt_id
   nonprod_rt_id    = module.tgw.nonprod_tgw_rt_id
 
   providers = {
