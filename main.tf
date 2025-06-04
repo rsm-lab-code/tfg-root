@@ -21,70 +21,43 @@
   #}
   #}
 
-# VPC Configuration - Define all  VPCs in one place
+# VPC Configuration - Only specify unique values, defaults handled by spoke module
 locals {
   vpc_configurations = {
-   
+    
     dev_vpc1 = {
-      environment             = "dev"
-      vpc_cidr_netmask       = 21
-      subnet_prefix          = 3
-      availability_zones     = ["us-west-2a", "us-west-2b"]
-      ipam_pool_key         = "us-west-2-nonprod-subnet1"
-      tgw_route_table_type  = "dev"
-      create_igw            = true
+      environment   = "dev"
+      ipam_pool_key = "us-west-2-nonprod-subnet1"
     }
-   
+  
     dev_vpc2 = {
-      environment             = "dev"
-      vpc_cidr_netmask       = 21
-      subnet_prefix          = 3
-      availability_zones     = ["us-west-2a", "us-west-2b"]
-      ipam_pool_key         = "us-west-2-nonprod-subnet2"
-      tgw_route_table_type  = "dev"
-      create_igw            = true
+      environment   = "dev"
+      ipam_pool_key = "us-west-2-nonprod-subnet2"
     }
     
     nonprod_vpc1 = {
-      environment             = "nonprod"
-      vpc_cidr_netmask       = 21
-      subnet_prefix          = 3
-      availability_zones     = ["us-west-2a", "us-west-2b"]
-      ipam_pool_key         = "us-west-2-nonprod-subnet3"
-      tgw_route_table_type  = "nonprod"
-      create_igw            = true
+      environment   = "nonprod"
+      ipam_pool_key = "us-west-2-nonprod-subnet3"
     }
     
     nonprod_vpc2 = {
-      environment             = "nonprod"
-      vpc_cidr_netmask       = 21
-      subnet_prefix          = 3
-      availability_zones     = ["us-west-2a", "us-west-2b"]
-      ipam_pool_key         = "us-west-2-nonprod-subnet4"
-      tgw_route_table_type  = "nonprod"
-      create_igw            = true
+      environment   = "nonprod"
+      ipam_pool_key = "us-west-2-nonprod-subnet4"
     }
 
     prod_vpc1 = {
-      environment             = "prod"
-      vpc_cidr_netmask       = 21
-      subnet_prefix          = 3
-      availability_zones     = ["us-west-2a", "us-west-2b"]
-      ipam_pool_key         = "us-west-2-prod-subnet2"
-      tgw_route_table_type  = "prod"
-      create_igw            = true
+      environment   = "prod"
+      ipam_pool_key = "us-west-2-prod-subnet2"
+      # Override: larger CIDR for production
+      vpc_cidr_netmask = 20
     }
 
-   prod_vpc2 = {
-    environment             = "prod"
-    vpc_cidr_netmask       = 21
-    subnet_prefix          = 3
-    availability_zones     = ["us-west-2a", "us-west-2b"]
-    ipam_pool_key          = "us-west-2-prod-subnet3"
-    tgw_route_table_type   = "prod"
-    create_igw             = true
-   }
-
+    prod_vpc2 = {
+      environment   = "prod"
+      ipam_pool_key = "us-west-2-prod-subnet3"
+      # Override: larger CIDR for production
+      vpc_cidr_netmask = 20
+    }
   }
 
   # Helper to get all VPC CIDRs for routing (will be populated after VPCs are created)
@@ -179,30 +152,26 @@ module "network_firewall" {
   }
 }
 
-
-# Create all VPCs dynamically using for_each
+# Create all VPCs dynamically - spoke module handles defaults
 module "spoke_vpcs" {
   source = "github.com/rsm-lab-code/tfg-spoke//generic_vpc?ref=main"
   for_each = local.vpc_configurations
 
-  # Basic configuration
-  vpc_name               = each.key
-  environment           = each.value.environment
-  delegated_account_id  = var.delegated_account_id
-
-  # IPAM configuration
-  ipam_pool_id          = module.ipam.subnet_pool_ids[each.value.ipam_pool_key]
-  vpc_cidr_netmask      = each.value.vpc_cidr_netmask
-  subnet_prefix         = each.value.subnet_prefix
-
-  # Network configuration
-  availability_zones    = each.value.availability_zones
-  create_igw           = each.value.create_igw
+  # Required parameters
+  vpc_name             = each.key
+  environment          = each.value.environment
+  delegated_account_id = var.delegated_account_id
+  ipam_pool_id         = module.ipam.subnet_pool_ids[each.value.ipam_pool_key]
 
   # Transit Gateway configuration
-  transit_gateway_id               = module.tgw.tgw_id
-  transit_gateway_route_table_id   = module.tgw.route_table_ids[each.value.tgw_route_table_type]
+  transit_gateway_id             = module.tgw.tgw_id
+  transit_gateway_route_table_id = module.tgw.route_table_ids[each.value.environment]
 
+  # Optional overrides (spoke module provides defaults)
+  vpc_cidr_netmask = try(each.value.vpc_cidr_netmask, null)
+  subnet_prefix    = try(each.value.subnet_prefix, null)
+  create_igw       = try(each.value.create_igw, null)
+  # availability_zones not specified - spoke module will use dynamic lookup
 
   # Common tags
   common_tags = {
@@ -217,7 +186,6 @@ module "spoke_vpcs" {
 }
 
 # Phase 2: CREATE INTER-VPC ROUTES SEPARATELY
-
 resource "aws_route" "inter_vpc_routes" {
   for_each = {
     for pair in flatten([
@@ -249,14 +217,11 @@ module "aws_config_test" {
  management_account_id = var.management_account_id
  organization_id = var.organization_id
 
-
  providers = {
    aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
    aws.management_account_us-west-2 = aws.management_account_us-west-2
  }
 } 
-
-
 
 module "spoke_route_manager" {
   # source = "./modules/spoke_route_manager"  
