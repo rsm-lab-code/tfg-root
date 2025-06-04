@@ -48,15 +48,11 @@ locals {
     prod_vpc1 = {
       environment   = "prod"
       ipam_pool_key = "us-west-2-prod-subnet2"
-      # Override: larger CIDR for production
-      vpc_cidr_netmask = 20
     }
 
     prod_vpc2 = {
       environment   = "prod"
       ipam_pool_key = "us-west-2-prod-subnet3"
-      # Override: larger CIDR for production
-      vpc_cidr_netmask = 20
     }
   }
 
