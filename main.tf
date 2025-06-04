@@ -24,7 +24,7 @@
 # VPC Configuration - Define all  VPCs in one place
 locals {
   vpc_configurations = {
-/*    
+   
     dev_vpc1 = {
       environment             = "dev"
       vpc_cidr_netmask       = 21
@@ -34,7 +34,7 @@ locals {
       tgw_route_table_type  = "dev"
       create_igw            = true
     }
- */   
+   
     dev_vpc2 = {
       environment             = "dev"
       vpc_cidr_netmask       = 21
