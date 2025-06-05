@@ -259,6 +259,7 @@ module "spoke_route_manager" {
   main_rt_id       = module.tgw.main_rt_id
   # dev_rt_id        = module.tgw.dev_tgw_rt_id
   nonprod_rt_id    = module.tgw.nonprod_tgw_rt_id
+  prod_rt_id       = module.tgw.prod_tgw_rt_id
 
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
