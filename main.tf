@@ -229,7 +229,7 @@ resource "aws_route" "inter_vpc_routes" {
 
 #AWS Config test module
 module "governance" {
-gsource = "github.com/rsm-lab-code/governance?ref=main"
+source = "github.com/rsm-lab-code/governance?ref=main"
 
  delegated_account_id = var.delegated_account_id
  management_account_id = var.management_account_id
