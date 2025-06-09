@@ -134,11 +134,32 @@ output "firewall_endpoint_ids" {
   value       = module.network_firewall.firewall_endpoint_ids
 }
 
-# AWS Config test outputs
-output "config_test_bucket" {
-  description = "Config test bucket name"
-  value       = module.aws_config_test.config_bucket_name
+#config and governance outputs
+output "governance_summary" {
+  description = "Summary of governance components deployed"
+  value       = module.governance.governance_summary
 }
+
+output "config_bucket_name" {
+  description = "Config bucket name"
+  value       = module.governance.config_bucket_name
+}
+
+output "global_network_id" {
+  description = "ID of the Global Network"
+  value       = module.governance.global_network_id
+}
+
+output "network_manager_console_url" {
+  description = "URL to access Network Manager console"
+  value       = module.governance.network_manager_console_url
+}
+
+output "config_console_url" {
+  description = "URL to access Config dashboard"
+  value       = module.governance.config_console_url
+}
+
 
 # Route Manager outputs
 output "tgw_route_summary" {
