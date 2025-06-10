@@ -227,7 +227,7 @@ resource "aws_route" "inter_vpc_routes" {
   depends_on = [module.spoke_vpcs, module.tgw]
 }
 
-#AWS Config test module
+#AWS Config 
 module "governance" {
 source = "github.com/rsm-lab-code/governance?ref=main"
 
@@ -278,9 +278,10 @@ module "scps" {
   source = "github.com/rsm-lab-code/tfg-scps?ref=main"
 
   # Policy creation and attachment
-  create_deny_root_policy     = true
-  create_cost_control_policy  = true
-  attach_policies            = true  
+  create_deny_root_policy        = true
+  create_cost_control_policy     = true
+  create_vpc_protection_policy   = true
+  attach_policies                = true  
   
   # Target OU from tfvars
   target_ou_id = var.scp_target_ou_id
