@@ -272,3 +272,20 @@ module "spoke_route_manager" {
 
   depends_on = [module.spoke_vpcs, module.tgw]
 }
+
+
+module "scps" {
+  source = "./modules/scps"
+  
+  # Policy creation and attachment
+  create_deny_root_policy     = true
+  create_cost_control_policy  = true
+  attach_policies            = true  
+  
+  # Target OU from tfvars
+  target_ou_id = var.scp_target_ou_id
+  
+  providers = {
+    aws.management_account = aws.management_account_us-west-2
+  }
+}

@@ -181,3 +181,28 @@ output "main_rt_routes" {
   description = "Routes in the main route table"
   value       = module.spoke_route_manager.main_rt_routes
 }
+
+
+#SCP outputs
+output "scp_organization_id" {
+  description = "Organization ID"
+  value       = module.scps.organization_id
+}
+
+output "scp_policies_created" {
+  description = "SCP policies that were created"
+  value = {
+    deny_root_policy     = module.scps.deny_root_policy_id
+    cost_control_policy  = module.scps.cost_control_policy_id
+  }
+}
+
+output "scp_policies_attached" {
+  description = "Whether SCP policies are attached"
+  value       = module.scps.policies_attached
+}
+
+output "scp_console_url" {
+  description = "URL to manage SCPs"
+  value       = module.scps.scp_console_url
+}
