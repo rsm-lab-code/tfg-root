@@ -275,8 +275,8 @@ module "spoke_route_manager" {
 
 
 module "scps" {
-  source = "./modules/scps"
-  
+  source = "github.com/rsm-lab-code/tfg-scps?ref=main"
+
   # Policy creation and attachment
   create_deny_root_policy     = true
   create_cost_control_policy  = true
