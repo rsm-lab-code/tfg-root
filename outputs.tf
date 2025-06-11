@@ -182,24 +182,34 @@ output "main_rt_routes" {
   value       = module.spoke_route_manager.main_rt_routes
 }
 
-
-#SCP outputs
+# SCP Outputs
 output "scp_organization_id" {
   description = "Organization ID"
   value       = module.scps.organization_id
 }
 
 output "scp_policies_created" {
-  description = "SCP policies that were created"
+  description = "SCP policies created based on TFG requirements"
   value = {
-    deny_root_policy     = module.scps.deny_root_policy_id
-    cost_control_policy  = module.scps.cost_control_policy_id
+    iam_controls_policy    = module.scps.iam_controls_policy_id
+    data_storage_policy    = module.scps.data_storage_policy_id
+    logging_policy         = module.scps.logging_policy_id
+    monitoring_policy      = module.scps.monitoring_policy_id
+    networking_policy      = module.scps.networking_policy_id
   }
 }
 
 output "scp_policies_attached" {
   description = "Whether SCP policies are attached"
   value       = module.scps.policies_attached
+}
+
+output "scp_target_details" {
+  description = "SCP attachment target information"
+  value = {
+    target_id    = module.scps.target_id
+    target_ou_id = var.scp_target_ou_id
+  }
 }
 
 output "scp_console_url" {

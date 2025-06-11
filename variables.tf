@@ -3,11 +3,15 @@ variable "aws_regions" {
   default = ["us-west-2", "us-east-1"]
 }
 
-# set in tfvars
-variable "aws_region" {}
+variable "aws_region" {
+  description = "Primary AWS region"
+  type        = string
+}
 
-# set in tfvars
-variable "root_ou_id" {}
+variable "root_ou_id" {
+  description = "Root Organizational Unit ID"
+  type        = string
+}
 
 variable "organization_id" {
   description = "AWS Organization ID for Config organization setup"
@@ -30,7 +34,20 @@ variable "management_account_id" {
 }
 
 variable "scp_target_ou_id" {
+  description = "OU ID to attach SCP policies tog(empty = organization root)"
+  type        = string
+  default     = ""
+}
+
+# SCP Configuration Variables
+variable "scp_target_ou_id" {
   description = "OU ID to attach SCP policies to (empty = organization root)"
   type        = string
   default     = ""
+}
+
+variable "attach_scp_policies" {
+  description = "Whether to attach SCP policies to the target OU"
+  type        = bool
+  default     = false
 }
