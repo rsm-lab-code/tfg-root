@@ -33,11 +33,6 @@ variable "management_account_id" {
   type        = string
 }
 
-variable "scp_target_ou_id" {
-  description = "OU ID to attach SCP policies tog(empty = organization root)"
-  type        = string
-  default     = ""
-}
 
 # SCP Configuration Variables
 variable "scp_target_ou_id" {
