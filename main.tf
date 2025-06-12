@@ -273,7 +273,7 @@ module "spoke_route_manager" {
 }
 
 module "scps" {
-  source = "github.com/rsm-lab-code/tfg-scps?ref=main"
+  source = "github.com/rsm-lab-code/tfg-scps//policies/scp_target_ou?ref=main"
 
   #for_each  = fileset(path.root, "policies/scp_target/*.json")
    #  json_file = each.value
