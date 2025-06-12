@@ -197,11 +197,17 @@ output "scp_console_url" {
   value       = "https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy"
 }
 
-
+#debug
 output "debug_scp_root_vars" {
   value = {
     attach_scp_policies = var.attach_scp_policies
     scp_target_ou_id = var.scp_target_ou_id
     management_account_id = var.management_account_id
   }
+}
+
+
+# Debug: Check what policies are being found
+output "debug_policy_files_found" {
+  value = fileset(path.root, "policies/scp_target_ou/*.json")
 }
