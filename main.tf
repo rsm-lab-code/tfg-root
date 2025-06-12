@@ -291,7 +291,8 @@ module "scps" {
     #   enabled         = var.attach_prod_scp_policies
     # }
       }
-  prgviders = {
+  providers = {
+
     aws.management_account = aws.management_account_us-west-2
   }
 }
