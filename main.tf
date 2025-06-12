@@ -262,6 +262,7 @@ module "spoke_route_manager" {
 
   inspection_rt_id = module.tgw.inspection_rt_id
   main_rt_id       = module.tgw.main_rt_id
+  # dev_rt_id        = module.tgw.dev_tgw_rt_id
   nonprod_rt_id    = module.tgw.nonprod_tgw_rt_id
   prod_rt_id       = module.tgw.prod_tgw_rt_id
 
@@ -274,42 +275,19 @@ module "spoke_route_manager" {
 
 module "scps" {
   source = "github.com/rsm-lab-code/tfg-scps?ref=main"
-  #source = "./scps"
-  #  for_each  = fileset(path.root, "policies/scp_target_ou/*.json")
-   #  json_file = each.value
-   #ou_id   = [var.scp_target_ou_id]
-   # ou_configurations = {
-   #target_ou = {
-   #ou_id           = var.scp_target_ou_id
-   #policy_directory = "policies/scp_target_ou"
-   #enabled         = var.attach_scp_policies
-   #}
-    # Future OUs can be added here:
-    # prod_ou = {
-    #   ou_id           = var.prod_ou_id
-    #   policy_directory = "policies/scp_prod_ou"
-    #   enabled         = var.attach_prod_scp_policies
-    # }
-    # }
-     attach_policies = var.attach_scp_policies  
-  target_ou_id    = var.scp_target_ou_id
-    providers = {
-     aws.management_account = aws.management_account_us-west-2
-      }
-}
 
-
-
-# Test management account access - TEMPORARY FOR DEBUGGING
-data "aws_organizations_organization" "test" {
-  provider = aws.management_account_us-west-2
-}
-
-output "test_org_access" {
-  value = {
-    organization_id = data.aws_organizations_organization.test.id
-    master_account_id = data.aws_organizations_organization.test.master_account_id
-    current_account = data.aws_organizations_organization.test.master_account_id
+  # Enable policies 
+  create_iam_controls_policy = true    # Root user, password policy, admin privileges, instance roles
+  create_data_storage_policy = true    # S3/EBS/RDS/EFS encryption and public access controls
+  create_logging_policy      = true    # CloudTrail protection and encryption
+  create_monitoring_policy   = true    # GuardDuty and VPC flow logs protection
+  create_networking_policy   = true    # Admin ports, default SG, PrivateLink, TLS enforcement
+  
+  # Policy attachment
+  attach_policies = var.attach_scp_policies  
+  target_ou_id   = var.scp_target_ou_id
+  
+  providers = {
+    aws.management_account = aws.management_account_us-west-2
   }
 }
-
