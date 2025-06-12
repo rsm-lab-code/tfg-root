@@ -278,20 +278,30 @@ module "scps" {
   #  for_each  = fileset(path.root, "policies/scp_target_ou/*.json")
    #  json_file = each.value
    #ou_id   = [var.scp_target_ou_id]
-    ou_configurations = {
-     target_ou = {
-    ou_id           = var.scp_target_ou_id
-    policy_directory = "policies/scp_target_ou"
-    enabled         = var.attach_scp_policies
-    }
+   #ou_configurations = {
+   # target_ou = {
+   #ou_id           = var.scp_target_ou_id
+   #policy_directory = "policies/scp_target_ou"
+   #enabled         = var.attach_scp_policies
+   #}
     # Future OUs can be added here:
     # prod_ou = {
     #   ou_id           = var.prod_ou_id
     #   policy_directory = "policies/scp_prod_ou"
     #   enabled         = var.attach_prod_scp_policies
     # }
-     }
-     providers = {
+    # }
+     
+    # Enable policies 
+  create_iam_controls_policy = true
+  create_data_storage_policy = true    
+  create_logging_policy      = true
+  create_monitoring_policy   = true
+  create_networking_policy   = true
+
+  target_ou_id   = var.scp_target_ou_id
+
+    providers = {
 
      aws.management_account = aws.management_account_us-west-2
       }

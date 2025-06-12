@@ -44,5 +44,5 @@ variable "scp_target_ou_id" {
 variable "attach_scp_policies" {
   description = "Whether to attach SCP policies to the target OU"
   type        = bool
-  default     = false
+  default     = true 
 }
