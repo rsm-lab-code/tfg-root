@@ -278,7 +278,7 @@ module "scps" {
   ou_configurations = {
     target_ou = {
       ou_id           = var.scp_target_ou_id
-      policy_directory = "policies/scp_target_ou"
+      policy_directory = "policies/scp_target_ou/*.json"
       enabled         = var.attach_scp_policies
     }
     # Future OUs can be added here:
