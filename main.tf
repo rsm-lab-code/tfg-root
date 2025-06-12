@@ -273,8 +273,8 @@ module "spoke_route_manager" {
 }
 
 module "scps" {
-  source = "github.com/rsm-lab-code/tfg-scps?ref=main"
-
+  #source = "github.com/rsm-lab-code/tfg-scps?ref=main"
+  source = "./scp"
   #  for_each  = fileset(path.root, "policies/scp_target_ou/*.json")
    #  json_file = each.value
    #ou_id   = [var.scp_target_ou_id]
