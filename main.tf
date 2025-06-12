@@ -274,18 +274,18 @@ module "spoke_route_manager" {
 }
 
 module "scps" {
-  source = "github.com/rsm-lab-code/tfg-scps?ref=main"
+  source   = "github.com/rsm-lab-code/tfg-scps?ref=main"
+  for_each = var.ou_scp_configurations
 
-  # Enable policies 
-  create_iam_controls_policy = true    # Root user, password policy, admin privileges, instance roles
-  create_data_storage_policy = true    # S3/EBS/RDS/EFS encryption and public access controls
-  create_logging_policy      = true    # CloudTrail protection and encryption
-  create_monitoring_policy   = true    # GuardDuty and VPC flow logs protection
-  create_networking_policy   = true    # Admin ports, default SG, PrivateLink, TLS enforcement
+  # Pass the individual OU configuration
+  create_iam_controls_policy = each.value.create_iam_controls_policy
+  create_data_storage_policy = each.value.create_data_storage_policy
+  create_logging_policy      = each.value.create_logging_policy
+  create_monitoring_policy   = each.value.create_monitoring_policy
+  create_networking_policy   = each.value.create_networking_policy
   
-  # Policy attachment
-  attach_policies = var.attach_scp_policies  
-  target_ou_id   = var.scp_target_ou_id
+  attach_policies = each.value.attach_policies
+  target_ou_id   = each.value.ou_id
   
   providers = {
     aws.management_account = aws.management_account_us-west-2
