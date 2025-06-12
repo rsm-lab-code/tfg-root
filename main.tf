@@ -290,7 +290,7 @@ module "scps" {
     #   policy_directory = "policies/scp_prod_ou"
     #   enabled         = var.attach_prod_scp_policies
     # }
-  }
+    #  }
   providers = {
     aws.management_account = aws.management_account_us-west-2
   }
