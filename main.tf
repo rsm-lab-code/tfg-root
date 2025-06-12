@@ -296,3 +296,19 @@ module "scps" {
      aws.management_account = aws.management_account_us-west-2
       }
 }
+
+
+
+# Test management account access - TEMPORARY FOR DEBUGGING
+data "aws_organizations_organization" "test" {
+  provider = aws.management_account_us-west-2
+}
+
+output "test_org_access" {
+  value = {
+    organization_id = data.aws_organizations_organization.test.id
+    master_account_id = data.aws_organizations_organization.test.master_account_id
+    current_account = data.aws_organizations_organization.test.master_account_id
+  }
+}
+
