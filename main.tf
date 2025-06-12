@@ -291,15 +291,8 @@ module "scps" {
     #   enabled         = var.attach_prod_scp_policies
     # }
     # }
-     
-    # Enable policies 
-  create_iam_controls_policy = true
-  create_data_storage_policy = true    
-  create_logging_policy      = true
-  create_monitoring_policy   = true
-  create_networking_policy   = true
-
-  target_ou_id   = var.scp_target_ou_id
+    attach_policies = var.attach_scp_policies  
+    target_ou_id   = var.scp_target_ou_id
 
     providers = {
 

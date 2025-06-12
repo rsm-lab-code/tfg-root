@@ -33,8 +33,7 @@ variable "management_account_id" {
   type        = string
 }
 
-
-# SCP Configuration Variables
+# SCP Configuration Variables 
 variable "scp_target_ou_id" {
   description = "OU ID to attach SCP policies to (empty = organization root)"
   type        = string
@@ -44,5 +43,5 @@ variable "scp_target_ou_id" {
 variable "attach_scp_policies" {
   description = "Whether to attach SCP policies to the target OU"
   type        = bool
-  default     = true 
+  default     = false
 }
