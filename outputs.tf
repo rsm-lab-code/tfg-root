@@ -181,38 +181,13 @@ output "main_rt_routes" {
   description = "Routes in the main route table"
   value       = module.spoke_route_manager.main_rt_routes
 }
-
 # SCP Outputs
-output "scp_organization_id" {
-  description = "Organization ID"
-  value       = module.scps.organization_id
-}
-
-output "scp_policies_created" {
-  description = "SCP policies created based on TFG requirements"
-  value = {
-    iam_controls_policy    = module.scps.iam_controls_policy_id
-    data_storage_policy    = module.scps.data_storage_policy_id
-    logging_policy         = module.scps.logging_policy_id
-    monitoring_policy      = module.scps.monitoring_policy_id
-    networking_policy      = module.scps.networking_policy_id
-  }
-}
-
-output "scp_policies_attached" {
-  description = "Whether SCP policies are attached"
-  value       = module.scps.policies_attached
-}
-
-output "scp_target_details" {
-  description = "SCP attachment target information"
-  value = {
-    target_id    = module.scps.target_id
-    target_ou_id = var.scp_target_ou_id
-  }
+output "scp_policy_ids" {
+  description = "SCP policy IDs"
+  value       = module.scps.scp_policy_ids
 }
 
 output "scp_console_url" {
   description = "URL to manage SCPs"
-  value       = module.scps.scp_console_url
+  value       = "https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy"
 }
