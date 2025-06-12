@@ -46,19 +46,3 @@ variable "attach_scp_policies" {
   type        = bool
   default     = false
 }
-
-
-#SCP variable for multi OU
-variable "ou_scp_configurations" {
-  description = "SCP configurations for different OUs"
-  type = map(object({
-    ou_id                      = string
-    create_iam_controls_policy = bool
-    create_data_storage_policy = bool
-    create_logging_policy      = bool
-    create_monitoring_policy   = bool
-    create_networking_policy   = bool
-    attach_policies           = bool
-  }))
-  default = {}
-}

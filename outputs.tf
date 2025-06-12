@@ -183,26 +183,36 @@ output "main_rt_routes" {
 }
 
 # SCP Outputs
+output "scp_organization_id" {
+  description = "Organization ID"
+  value       = module.scps.organization_id
+}
 
-output "scp_policies_by_ou" {
-  description = "SCP policies created for each OU"
+output "scp_policies_created" {
+  description = "SCP policies created based on TFG requirements"
   value = {
-    for ou_name, config in var.ou_scp_configurations : ou_name => {
-      ou_id = config.ou_id
-      policies_created = {
-        iam_controls_policy = try(module.scps[ou_name].iam_controls_policy_id, null)
-        data_storage_policy = try(module.scps[ou_name].data_storage_policy_id, null)
-        logging_policy      = try(module.scps[ou_name].logging_policy_id, null)
-        monitoring_policy   = try(module.scps[ou_name].monitoring_policy_id, null)
-        networking_policy   = try(module.scps[ou_name].networking_policy_id, null)
-      }
-      policies_attached = config.attach_policies
-      organization_id = module.scps[ou_name].organization_id
-    }
+    iam_controls_policy    = module.scps.iam_controls_policy_id
+    data_storage_policy    = module.scps.data_storage_policy_id
+    logging_policy         = module.scps.logging_policy_id
+    monitoring_policy      = module.scps.monitoring_policy_id
+    networking_policy      = module.scps.networking_policy_id
+  }
+}
+
+output "scp_policies_attached" {
+  description = "Whether SCP policies are attached"
+  value       = module.scps.policies_attached
+}
+
+output "scp_target_details" {
+  description = "SCP attachment target information"
+  value = {
+    target_id    = module.scps.target_id
+    target_ou_id = var.scp_target_ou_id
   }
 }
 
 output "scp_console_url" {
   description = "URL to manage SCPs"
-  value       = "https://console.aws.amazon.com/organizations/v2/home/policies/service-control-policy"
+  value       = module.scps.scp_console_url
 }
