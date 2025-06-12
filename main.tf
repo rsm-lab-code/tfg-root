@@ -273,26 +273,26 @@ module "spoke_route_manager" {
 }
 
 module "scps" {
-  source = "github.com/rsm-lab-code/tfg-scps//policies/scp_target_ou?ref=main"
+  source = "github.com/rsm-lab-code/tfg-scps?ref=main"
 
-  #for_each  = fileset(path.root, "policies/scp_target/*.json")
-   #  json_file = each.value
-   # ou_id   = [var.scp_target_ou_id]
-   ou_configurations = {
-   target_ou = {
-    ou_id           = var.scp_target_ou_id
-    policy_directory = "policies/scp_target_ou"
-    enabled         = var.attach_scp_policies
-   }
+  for_each  = fileset(path.root, "policies/scp_target_ou/*.json")
+     json_file = each.value
+    ou_id   = [var.scp_target_ou_id]
+    #ou_configurations = {
+    # target_ou = {
+    #ou_id           = var.scp_target_ou_id
+    #policy_directory = "policies/scp_target_ou"
+    #enabled         = var.attach_scp_policies
+    #}
     # Future OUs can be added here:
     # prod_ou = {
     #   ou_id           = var.prod_ou_id
     #   policy_directory = "policies/scp_prod_ou"
     #   enabled         = var.attach_prod_scp_policies
     # }
-      }
-      providers = {
+    # }
+    # providers = {
 
-      aws.management_account = aws.management_account_us-west-2
-       }
+    # aws.management_account = aws.management_account_us-west-2
+    #  }
 }
