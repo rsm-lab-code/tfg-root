@@ -277,7 +277,7 @@ module "scps" {
 
   for_each  = fileset(path.root, "policies/scp_target/*.json")
      json_file = each.value
-     ou_list   = [var.scp_target_ou_id]
+     ou_id   = [var.scp_target_ou_id]
   # ou_configurations = {
   # target_ou = {
   #   ou_id           = var.scp_target_ou_id
