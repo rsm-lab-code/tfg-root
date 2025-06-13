@@ -1,26 +1,3 @@
-#terraform {
-  #backend "remote" {
-  # organization = "rsm-lab-code"
-  # workspaces {
-  #   name = "tfg-multi-repo"
-  # }
-  #}
-  #required_providers {
-  # aws = {
-  #   source  = "hashicorp/aws"
-  #   version = "~> 5.49.0"
-  # }
-  # time = {
-  #   source  = "hashicorp/time"
-  #   version = "~> 0.9.0"
-  # }
-  # null = {
-  #   source  = "hashicorp/null"
-  #   version = "~> 3.0"
-  # }
-  #}
-  #}
-
 # VPC Configuration - Dynamic generation based on vpc_counts
 locals {
   # Define how many VPCs you want per environment
@@ -227,7 +204,7 @@ resource "aws_route" "inter_vpc_routes" {
   depends_on = [module.spoke_vpcs, module.tgw]
 }
 
-#AWS Config 
+#AWS network firewall manager and config 
 module "governance" {
 source = "github.com/rsm-lab-code/governance?ref=main"
 
