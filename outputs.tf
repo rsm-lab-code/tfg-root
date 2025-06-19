@@ -217,7 +217,6 @@ output "scp_console_url" {
   value       = module.scps.scp_console_url
 }
 
-
 # Account Factory Outputs
 output "organization_structure" {
   description = "Organization and OU structure"

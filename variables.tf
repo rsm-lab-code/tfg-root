@@ -46,3 +46,23 @@ variable "attach_scp_policies" {
   type        = bool
   default     = false
 }
+
+#Account factory variables
+variable "departments" {
+  description = "Set of department names to create OUs for"
+  type        = set(string)
+  default     = ["IT", "Finance", "HR", "Marketing", "Engineering"]
+}
+
+variable "account_requests" {
+  description = "Map of new accounts to create"
+  type = map(object({
+    name        = string
+    email       = string
+    department  = string
+    environment = string
+    purpose     = string
+    owner       = string
+  }))
+  default = {}
+}
