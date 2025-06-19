@@ -268,3 +268,46 @@ module "scps" {
     aws.management_account = aws.management_account_us-west-2
   }
 }
+
+
+
+# Account Factory Module
+module "account_factory" {
+  source = "github.com/rsm-lab-code/tfg-account-factory?ref=main"
+
+  # Define departments
+  departments = ["IT", "Finance", "HR", "Marketing", "Engineering"]
+
+  # New accounts to create
+  account_requests = {
+    "it-prod-main" = {
+      name        = "IT-Production-Main"
+      email       = "aws-it-prod-main@yourcompany.com"
+      department  = "IT"
+      environment = "prod"
+      purpose     = "IT Production workloads"
+      owner       = "IT-Team"
+    }
+    "it-nonprod-dev" = {
+      name        = "IT-NonProd-Development"
+      email       = "aws-it-nonprod-dev@yourcompany.com"
+      department  = "IT"
+      environment = "nonprod"
+      purpose     = "IT Development and testing"
+      owner       = "IT-Team"
+    }
+    "finance-prod-main" = {
+      name        = "Finance-Production-Main"
+      email       = "aws-finance-prod@yourcompany.com"
+      department  = "Finance"
+      environment = "prod"
+      purpose     = "Finance production applications"
+      owner       = "Finance-Team"
+    }
+    # Add more accounts as needed
+  }
+
+  providers = {
+    aws.management_account = aws.management_account_us-west-2
+  }
+}

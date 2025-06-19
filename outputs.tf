@@ -216,3 +216,29 @@ output "scp_console_url" {
   description = "URL to manage SCPs"
   value       = module.scps.scp_console_url
 }
+
+
+# Account Factory Outputs
+output "organization_structure" {
+  description = "Organization and OU structure"
+  value = {
+    organization_id = module.account_factory.organization_id
+    root_id        = module.account_factory.organization_root_id
+    prod_ou_id     = module.account_factory.prod_ou_id
+    nonprod_ou_id  = module.account_factory.nonprod_ou_id
+    department_ous = {
+      prod    = module.account_factory.dept_prod_ou_ids
+      nonprod = module.account_factory.dept_nonprod_ou_ids
+    }
+  }
+}
+
+output "created_accounts" {
+  description = "All accounts created by the account factory"
+  value       = module.account_factory.created_accounts
+}
+
+output "account_factory_console_url" {
+  description = "URL to view AWS Organizations"
+  value       = "https://console.aws.amazon.com/organizations/v2/home"
+}
