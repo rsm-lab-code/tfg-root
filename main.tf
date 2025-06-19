@@ -204,23 +204,6 @@ resource "aws_route" "inter_vpc_routes" {
   depends_on = [module.spoke_vpcs, module.tgw]
 }
 
-#AWS network firewall manager and config 
-module "governance" {
-source = "github.com/rsm-lab-code/governance?ref=main"
-
- delegated_account_id = var.delegated_account_id
- management_account_id = var.management_account_id
- organization_id = var.organization_id
- aws_regions          = var.aws_regions
-
- transit_gateway_arn = module.tgw.tgw_arn
-
- providers = {
-   aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
-   aws.management_account_us-west-2 = aws.management_account_us-west-2
- }
- depends_on = [module.tgw, module.spoke_vpcs]
-} 
 
 module "spoke_route_manager" {
   # source = "./modules/spoke_route_manager"  

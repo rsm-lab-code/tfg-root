@@ -133,34 +133,18 @@ output "firewall_endpoint_ids" {
   description = "IDs of the Network Firewall endpoints"
   value       = module.network_firewall.firewall_endpoint_ids
 }
-
-#config and governance outputs
-output "governance_summary" {
-  description = "Summary of governance components deployed"
-  value       = module.governance.governance_summary
-}
-
-output "config_bucket_name" {
-  description = "Config bucket name"
-  value       = module.governance.config_bucket_name
-}
-
+##############################################
+# Network Manager outputs 
 output "global_network_id" {
   description = "ID of the Global Network"
-  value       = module.governance.global_network_id
+  value       = module.tgw.global_network_id
 }
 
 output "network_manager_console_url" {
   description = "URL to access Network Manager console"
-  value       = module.governance.network_manager_console_url
+  value       = module.tgw.network_manager_console_url
 }
-
-output "config_console_url" {
-  description = "URL to access Config dashboard"
-  value       = module.governance.config_console_url
-}
-
-
+##########################################################
 # Route Manager outputs
 output "tgw_route_summary" {
   description = "Summary of all Transit Gateway routes created"
