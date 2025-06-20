@@ -47,6 +47,24 @@ variable "attach_scp_policies" {
   default     = false
 }
 
+variable "create_root_baseline_policy" {
+  description = "Create baseline security policy for organization root"
+  type        = bool
+  default     = true
+}
+
+variable "create_prod_controls_policy" {
+  description = "Create strict controls for production OU"
+  type        = bool
+  default     = true
+}
+
+variable "create_nonprod_controls_policy" {
+  description = "Create development controls for non-production OU"
+  type        = bool
+  default     = true
+}
+
 #Account factory variables
 variable "departments" {
   description = "Set of department names to create OUs for"
