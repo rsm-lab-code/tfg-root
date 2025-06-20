@@ -222,7 +222,6 @@ module "spoke_route_manager" {
 
   inspection_rt_id = module.tgw.inspection_rt_id
   main_rt_id       = module.tgw.main_rt_id
-  # dev_rt_id        = module.tgw.dev_tgw_rt_id
   nonprod_rt_id    = module.tgw.nonprod_tgw_rt_id
   prod_rt_id       = module.tgw.prod_tgw_rt_id
 
@@ -236,17 +235,20 @@ module "spoke_route_manager" {
 module "scps" {
   source = "github.com/rsm-lab-code/tfg-scps?ref=main"
 
-  # Enable policies 
-  create_iam_controls_policy = true    # Root user, password policy, admin privileges, instance roles
-  create_data_storage_policy = true    # S3/EBS/RDS/EFS encryption and public access controls
-  create_logging_policy      = true    # CloudTrail protection and encryption
-  create_monitoring_policy   = true    # GuardDuty and VPC flow logs protection
-  create_networking_policy   = true    # Admin ports, default SG, PrivateLink, TLS enforcement
+  # Tiered policy creation
+  create_root_baseline_policy   = true
+  create_prod_controls_policy   = true
+  create_nonprod_controls_policy = true
   
-  # Policy attachment
-  attach_policies = var.attach_scp_policies  
-  target_ou_id   = var.scp_target_ou_id
+  # Policy attachment (controlled by terraform.tfvars)
+  attach_root_policies    = var.attach_scp_policies
+  attach_prod_policies    = var.attach_scp_policies
+  attach_nonprod_policies = var.attach_scp_policies
   
+  # OU targeting (gets OUs from account factory)
+  prod_ou_id     = module.account_factory.prod_ou_id
+  nonprod_ou_id  = module.account_factory.nonprod_ou_id
+
   providers = {
     aws.management_account = aws.management_account_us-west-2
   }
