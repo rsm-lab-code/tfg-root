@@ -245,7 +245,7 @@ module "scps" {
   #attach_prod_policies    = var.attach_scp_policies
   #attach_nonprod_policies = var.attach_scp_policies
   
-  attach_root_policies    = false  
+  attach_root_policies    = true  
   attach_prod_policies    = true   
   attach_nonprod_policies = true   
 
