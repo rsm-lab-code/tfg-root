@@ -243,7 +243,7 @@ module "spoke_route_manager" {
 
   depends_on = [module.spoke_vpcs, module.tgw]
 }
-
+/*
 module "scps" {
   source = "github.com/rsm-lab-code/tfg-scps?ref=main"
 
@@ -265,7 +265,7 @@ module "scps" {
     aws.management_account = aws.management_account_us-west-2
   }
 }
-
+*/
 # Account Factory Module
 module "account_factory" {
   source = "github.com/rsm-lab-code/tfg-account-factory?ref=main"
