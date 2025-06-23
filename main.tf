@@ -110,6 +110,9 @@ module "tgw" {
    
   #account_id
   delegated_account_id = var.delegated_account_id
+  management_account_id = var.management_account_id
+  tfg_test_account1_id  = var.tfg_test_account1_id
+  spoke_account_ids     = [] 
   organization_id      = var.organization_id 
  
   inspection_vpc_id = module.inspection_vpc.vpc_id
