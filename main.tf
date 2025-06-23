@@ -241,10 +241,14 @@ module "scps" {
   create_nonprod_controls_policy = true
   
   # Policy attachment (controlled by terraform.tfvars)
-  attach_root_policies    = var.attach_scp_policies
-  attach_prod_policies    = var.attach_scp_policies
-  attach_nonprod_policies = var.attach_scp_policies
+  #attach_root_policies    = var.attach_scp_policies
+  #attach_prod_policies    = var.attach_scp_policies
+  #attach_nonprod_policies = var.attach_scp_policies
   
+  attach_root_policies    = false  
+  attach_prod_policies    = true   
+  attach_nonprod_policies = true   
+
   # OU targeting (gets OUs from account factory)
   prod_ou_id     = module.account_factory.prod_ou_id
   nonprod_ou_id  = module.account_factory.nonprod_ou_id
