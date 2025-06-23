@@ -196,13 +196,12 @@ output "account_factory_console_url" {
 ###########################################
 # TGW Sharing Outputs
 
-
 output "tgw_sharing_details" {
   description = "Transit Gateway sharing configuration"
   value = {
     resource_share_id  = module.tgw.tgw_resource_share_id
     resource_share_arn = module.tgw.tgw_resource_share_arn
-    shared_with_org    = module.tgw.tgw_shared_with_organization
+    shared_accounts    = module.tgw.tgw_shared_accounts
     sharing_status     = module.tgw.tgw_sharing_status
   }
 }
@@ -210,8 +209,9 @@ output "tgw_sharing_details" {
 output "tgw_access_instructions" {
   description = "Instructions for accessing shared TGW from spoke accounts"
   value = {
-    message = "Transit Gateway has been shared with organization ${var.organization_id}. Spoke accounts can now attach VPCs to TGW ID: ${module.tgw.tgw_id}"
+    message = "Transit Gateway has been shared with individual accounts. Spoke accounts can now attach VPCs to TGW ID: ${module.tgw.tgw_id}"
     tgw_id  = module.tgw.tgw_id
+    shared_accounts = module.tgw.tgw_shared_accounts
     console_url = "https://console.aws.amazon.com/ram/home#Shared_With_Me:sort=resourceType"
   }
 }
