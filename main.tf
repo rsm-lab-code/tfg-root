@@ -112,7 +112,14 @@ module "tgw" {
   delegated_account_id = var.delegated_account_id
   management_account_id = var.management_account_id
   tfg_test_account1_id  = var.tfg_test_account1_id
-  spoke_account_ids     = [] 
+  
+  #Dynamic: share tgw with accounts created by account factory
+
+  spoke_account_ids = concat(
+    var.additional_spoke_accounts,  # Any manually specified accounts
+    [for account in module.account_factory.created_accounts : account.id]  
+  )
+
   organization_id      = var.organization_id 
  
   inspection_vpc_id = module.inspection_vpc.vpc_id
@@ -127,6 +134,8 @@ module "tgw" {
   providers = {
     aws.delegated_account_us-west-2 = aws.delegated_account_us-west-2
   }
+
+   depends_on = [module.account_factory]
 }
 
 # Add Network Firewall module
@@ -243,11 +252,7 @@ module "scps" {
   create_prod_controls_policy   = true
   create_nonprod_controls_policy = true
   
-  # Policy attachment (controlled by terraform.tfvars)
-  #attach_root_policies    = var.attach_scp_policies
-  #attach_prod_policies    = var.attach_scp_policies
-  #attach_nonprod_policies = var.attach_scp_policies
-  
+  # Policy attachment 
   attach_root_policies    = true  
   attach_prod_policies    = true   
   attach_nonprod_policies = true   

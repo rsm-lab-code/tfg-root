@@ -83,3 +83,10 @@ variable "account_requests" {
   }))
   default = {}
 }
+
+
+variable "additional_spoke_accounts" {
+  description = "Additional spoke account IDs not created by Account Factory"
+  type        = list(string)
+  default     = []
+}
