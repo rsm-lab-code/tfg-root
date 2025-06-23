@@ -191,3 +191,27 @@ output "account_factory_console_url" {
   description = "URL to view AWS Organizations"
   value       = "https://console.aws.amazon.com/organizations/v2/home"
 }
+
+
+###########################################
+# TGW Sharing Outputs
+
+
+output "tgw_sharing_details" {
+  description = "Transit Gateway sharing configuration"
+  value = {
+    resource_share_id  = module.tgw.tgw_resource_share_id
+    resource_share_arn = module.tgw.tgw_resource_share_arn
+    shared_with_org    = module.tgw.tgw_shared_with_organization
+    sharing_status     = module.tgw.tgw_sharing_status
+  }
+}
+
+output "tgw_access_instructions" {
+  description = "Instructions for accessing shared TGW from spoke accounts"
+  value = {
+    message = "Transit Gateway has been shared with organization ${var.organization_id}. Spoke accounts can now attach VPCs to TGW ID: ${module.tgw.tgw_id}"
+    tgw_id  = module.tgw.tgw_id
+    console_url = "https://console.aws.amazon.com/ram/home#Shared_With_Me:sort=resourceType"
+  }
+}

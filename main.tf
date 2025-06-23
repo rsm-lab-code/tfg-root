@@ -104,13 +104,13 @@ module "inspection_vpc" {
 
 # Add Transit Gateway module
 module "tgw" {
-  #source = "../hub/tgw"
   source = "github.com/rsm-lab-code/tfg-hub//tgw?ref=main"
   aws_regions = var.aws_regions
   amazon_side_asn = 64512
    
   #account_id
   delegated_account_id = var.delegated_account_id
+  organization_id      = var.organization_id 
  
   inspection_vpc_id = module.inspection_vpc.vpc_id
   inspection_subnet_ids = module.inspection_vpc.tgw_subnet_ids
