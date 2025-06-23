@@ -243,7 +243,6 @@ module "spoke_route_manager" {
 
   depends_on = [module.spoke_vpcs, module.tgw]
 }
-/*
 module "scps" {
   source = "github.com/rsm-lab-code/tfg-scps?ref=main"
 
@@ -253,9 +252,9 @@ module "scps" {
   create_nonprod_controls_policy = true
   
   # Policy attachment 
-  attach_root_policies    = true  
-  attach_prod_policies    = true   
-  attach_nonprod_policies = true   
+  attach_root_policies    = false  
+  attach_prod_policies    = false   
+  attach_nonprod_policies = false    
 
   # OU targeting (gets OUs from account factory)
   prod_ou_id     = module.account_factory.prod_ou_id
@@ -265,7 +264,6 @@ module "scps" {
     aws.management_account = aws.management_account_us-west-2
   }
 }
-*/
 # Account Factory Module
 module "account_factory" {
   source = "github.com/rsm-lab-code/tfg-account-factory?ref=main"
