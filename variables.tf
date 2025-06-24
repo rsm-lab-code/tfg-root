@@ -72,9 +72,10 @@ variable "account_requests" {
   type = map(object({
     name        = string
     email       = string
-    department  = string
+    business_unit  = string
     environment = string
     description     = string
+    target_ou    = string
   }))
   default = {}
 }
