@@ -265,6 +265,7 @@ module "scps" {
   }
 }
 # Account Factory Module
+/*
 module "account_factory" {
   source = "github.com/rsm-lab-code/tfg-account-factory?ref=main"
 
@@ -274,4 +275,4 @@ module "account_factory" {
   providers = {
     aws.management_account = aws.management_account_us-west-2
   }
-}
+}*/
