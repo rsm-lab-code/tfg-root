@@ -66,11 +66,6 @@ variable "create_nonprod_controls_policy" {
 }
 
 #Account factory variables
-variable "departments" {
-  description = "Set of department names to create OUs for"
-  type        = set(string)
-  default     = ["IT", "Finance", "HR", "Marketing", "Engineering"]
-}
 
 variable "account_requests" {
   description = "Map of new accounts to create"
