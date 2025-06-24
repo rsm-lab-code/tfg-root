@@ -269,8 +269,8 @@ module "scps" {
 module "account_factory" {
   source = "github.com/rsm-lab-code/tfg-account-factory?ref=main"
 
-  # departments      = var.departments
-  #account_requests = var.account_requests
+   departments      = var.departments
+  account_requests = var.account_requests
 
   providers = {
     aws.management_account = aws.management_account_us-west-2
