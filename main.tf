@@ -253,7 +253,7 @@ module "scps" {
   
   # Policy attachment 
   attach_root_policies    = false  
-  attach_prod_policies    = false   
+  attach_prod_policies    = true   
   attach_nonprod_policies = false    
 
   # OU targeting (gets OUs from account factory)
