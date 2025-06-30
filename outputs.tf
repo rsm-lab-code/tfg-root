@@ -19,11 +19,12 @@ output "environment_pool_ids" {
   value       = module.ipam.environment_pool_ids
 }
 
+/*
 output "subnet_pool_ids" {
   description = "IDs of subnet pools"
   value       = module.ipam.subnet_pool_ids
 }
-
+*/
 # Output all VPC information dynamically
 output "spoke_vpcs" {
   description = "Information about all spoke VPCs"

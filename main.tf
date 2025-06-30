@@ -1,19 +1,17 @@
 # VPC Configuration - Dynamic generation based on vpc_counts
 locals {
   # Define how many VPCs you want per environment
-  vpc_counts = {
-   # dev     = 2  
+  vpc_counts = { 
     nonprod = 2  
     prod    = 2
   }
   
   # Map logical environments to IPAM environments
   env_to_ipam_mapping = {
-    #dev     = "nonprod"  # dev uses nonprod IPAM pools
     nonprod = "nonprod" 
     prod    = "prod"
   }
-  
+  /*
   # Available pools per IPAM environment 
   pools_per_env = {
     nonprod = 4  # nonprod has Vpc1 through vpc4
@@ -25,7 +23,7 @@ locals {
     nonprod = []  # no reserved pools for nonprod
     prod    = [1]  # prod-vpc1 is reserved for inspection VPC
   }
-  
+  */
   # Create ordered list of all VPCs we want to create
   vpc_creation_order = flatten([
     for env, count in local.vpc_counts : [
@@ -36,7 +34,7 @@ locals {
       }
     ]
   ])
-  
+  /*
   # Track pool usage per IPAM environment
   pool_usage = {
     for ipam_env in keys(local.pools_per_env) : ipam_env => [
@@ -44,12 +42,15 @@ locals {
       if vpc.ipam_env == ipam_env
     ]
   }
-  
+  */
   # Generate VPC configurations with automatic pool assignment
   vpc_configurations = {
     for vpc in local.vpc_creation_order : vpc.vpc_name => {
       environment = vpc.environment
-      ipam_pool_key = vpc.ipam_env == "prod" ? "us-west-2-prod-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 2}" : "us-west-2-${vpc.ipam_env}-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 1}"
+     # ipam_pool_key = vpc.ipam_env == "prod" ? "us-west-2-prod-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 2}" : "us-west-2-${vpc.ipam_env}-subnet${index(local.pool_usage[vpc.ipam_env], vpc) + 1}"
+     #Direct assignment to environment pool instead of subnet pools 
+     ipam_pool_key = "${var.aws_regions[0]}-${vpc.ipam_env}"
+
     }
   }
 
@@ -77,7 +78,9 @@ module "inspection_vpc" {
   #source = "../hub/inspection_vpc"
   source = "github.com/rsm-lab-code/tfg-hub//inspection_vpc?ref=main"
   # IPAM configuration
-  subnet_pool_id = module.ipam.subnet_pool_ids["us-west-2-prod-subnet1"]
+  #subnet_pool_id = module.ipam.subnet_pool_ids["us-west-2-prod-subnet1"]
+  #Use environment pool instead of subnet pool
+  subnet_pool_id = module.ipam.environment_pool_ids["${var.aws_regions[0]}-prod"]
   vpc_cidr_netmask = 24
   subnet_prefix = 3
   
@@ -166,8 +169,9 @@ module "spoke_vpcs" {
   vpc_name             = each.key
   environment          = each.value.environment
   delegated_account_id = var.delegated_account_id
-  ipam_pool_id         = module.ipam.subnet_pool_ids[each.value.ipam_pool_key]
-   
+  #ipam_pool_id         = module.ipam.subnet_pool_ids[each.value.ipam_pool_key]
+  #Now points to environment pool instead of subnet pool
+   ipam_pool_id         = module.ipam.environment_pool_ids[each.value.ipam_pool_key]
   #defaul Availability zones
   availability_zones   = ["us-west-2a", "us-west-2b"]
   # Transit Gateway configuration
