@@ -179,10 +179,11 @@ module "spoke_vpcs" {
   transit_gateway_route_table_id = module.tgw.route_table_ids[each.value.environment]
 
   # Optional overrides (spoke module provides defaults)
-  vpc_cidr_netmask = try(each.value.vpc_cidr_netmask, null)  # Keep /21 as default
+  # vpc_cidr_netmask = try(each.value.vpc_cidr_netmask, null)  # Keep /21 as default
   subnet_prefix    = try(each.value.subnet_prefix, null)
   create_igw       = try(each.value.create_igw, null)
 
+   
   # Common tags
   common_tags = {
     ManagedBy = "terraform"
