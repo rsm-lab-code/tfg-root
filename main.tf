@@ -225,7 +225,10 @@ resource "aws_route" "inter_vpc_routes" {
 module "spoke_route_manager" {
   # source = "./modules/spoke_route_manager"  
   source = "github.com/rsm-lab-code/tfg-spoke//route_manager?ref=main"  
-
+  
+  #Disable specific vpc routes in prod and non prod tgw routes
+  enable_environment_specific_routes = false
+  
   spoke_vpc_attachments = {
     for name, vpc in module.spoke_vpcs : name => {
       cidr_block    = vpc.vpc_cidr
