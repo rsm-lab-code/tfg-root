@@ -34,6 +34,7 @@ output "spoke_vpcs" {
       vpc_cidr         = vpc.vpc_cidr
       public_subnets   = vpc.public_subnet_ids
       private_subnets  = vpc.private_subnet_ids
+      tgw_subnets      = vpc.tgw_subnet_ids
       tgw_attachment   = vpc.tgw_attachment_id
       environment     = local.vpc_configurations[name].environment
       internet_gateway = vpc.internet_gateway_id
