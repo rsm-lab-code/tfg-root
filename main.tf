@@ -166,6 +166,7 @@ module "spoke_vpcs" {
   for_each = local.vpc_configurations
 
    #S3 bucket ARN for VPC flow logs
+  enable_flow_logs       = true
   flow_logs_s3_bucket_arn = module.inspection_vpc.flow_logs_s3_bucket_arn
 
   # Required parameters
