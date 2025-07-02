@@ -165,6 +165,9 @@ module "spoke_vpcs" {
   source = "github.com/rsm-lab-code/tfg-spoke//generic_vpc?ref=main"
   for_each = local.vpc_configurations
 
+   #S3 bucket ARN for VPC flow logs
+  flow_logs_s3_bucket_arn = module.inspection_vpc.flow_logs_s3_bucket_arn
+
   # Required parameters
   vpc_name             = each.key
   environment          = each.value.environment
